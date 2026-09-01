@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerardo Sison — Software Developer</title>
+  <meta name="description" content="Portfolio of Gerardo Sison — Software Developer & Student.">
+
+  <!-- Google Fonts: Inter (Clean UI) & JetBrains Mono (Technical / Dates) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Subtle Halftone / Dot Grid Background -->
+  <div class="bg-dots" aria-hidden="true"></div>
+
+  <!-- ===== PERSISTENT TOPBAR / NAVIGATION ===== -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="/" data-link class="logo">
+        <span class="logo-text">gerardo</span>
+      </a>
+
+      <!-- 4 Core Navigation Routes -->
+      <nav class="topnav" id="topnav">
+        <a href="/" data-link class="nav-link active" data-route="/">Home</a>
+        <a href="/projects" data-link class="nav-link" data-route="/projects">Projects</a>
+        <a href="/events" data-link class="nav-link" data-route="/events">Events</a>
+        <a href="/contact" data-link class="nav-link" data-route="/contact">Contact Me</a>
+      </nav>
+        <div class="topbar-actions">
+          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav">
+      <a href="/" data-link class="mobile-link" data-route="/">Home</a>
+      <a href="/projects" data-link class="mobile-link" data-route="/projects">Projects</a>
+      <a href="/events" data-link class="mobile-link" data-route="/events">Events</a>
+      <a href="/contact" data-link class="mobile-link" data-route="/contact">Contact Me</a>
+    </nav>
+  </div>
+
+  <!-- ===== DYNAMIC MAIN VIEW CONTAINER ===== -->
+  <main class="content">
+    <div class="content-inner">
+
+      <!-- =========================================================
+           ROUTE 1: HOME PAGE (/) — SCROLLABLE ONE-PAGER
+           ========================================================= -->
+      <div id="view-home" class="page-view active">
+        
+        <!-- 1. HERO -->
+        <section class="section hero">
+          <div class="hero-left">
+            <div class="avatar-wrap">
+              <img class="avatar" src="images/profile.png" alt="Gerardo Sison" onerror="this.src='https://api.dicebear.com/9.x/notionists/svg?seed=Gerardo&radius=50&backgroundColor=f3f4f6'">
+              </span>
+            </div>
+          </div>
+
+          <div class="hero-text">
+            <div class="hero-header">
+              <span class="hero-greeting font-mono">Hello! I am</span>
+              <h1>Gerardo Sison</h1>
+              <p class="location font-mono">Cavite, Philippines</p>
+            </div>
+
+            <h2 class="role">Software Developer &amp; Student</h2>
+            <p class="bio">
+              I build reliable web applications, clean user interfaces, and explore practical AI integrations. 
+              Focused on modern frontend engineering, scalable backend APIs, and continuous technical growth.
+            </p>
+
+            <!-- Social Links -->
+            <div class="social-row">
+              <a href="https://github.com/gerardosison" target="_blank" rel="noopener" aria-label="GitHub" class="social-btn">
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+                <span>GitHub</span>
+              </a>
+              <a href="https://www.linkedin.com/in/gerardo-sison-309959381" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-btn">
+                <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M0 1.15C0 .52.53 0 1.19 0h13.62C15.47 0 16 .52 16 1.15v13.7c0 .64-.53 1.15-1.19 1.15H1.19C.53 16 0 15.49 0 14.85V1.15ZM4.75 13.4V6.16H2.4v7.24h2.35Zm-1.17-8.22c.82 0 1.33-.54 1.33-1.22-.01-.7-.51-1.22-1.31-1.22-.8 0-1.33.53-1.33 1.22 0 .68.51 1.22 1.3 1.22h.01Zm4.53 8.22v-4.04c0-.22.02-.43.08-.59.18-.43.58-.88 1.26-.88.89 0 1.24.68 1.24 1.67v3.84h2.35V9.4c0-2.17-1.16-3.18-2.71-3.18-1.25 0-1.8.7-2.11 1.18h.02v-1H6.06c.03.66 0 7 0 7h2.05Z"/></svg>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://web.facebook.com/gerardo.sison.1" target="_blank" rel="noopener" aria-label="Facebook" class="social-btn">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.16 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.04 1.79-4.72 4.55-4.72 1.32 0 2.7.24 2.7.24v2.99h-1.52c-1.5 0-1.97.94-1.97 1.9v2.27h3.35l-.54 3.49h-2.81V24C19.61 23.16 24 18.1 24 12.07Z"/></svg>
+                <span>Facebook</span>
+              </a>
+              <a href="https://www.instagram.com/gerardosison01/" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.52.19.96.45 1.39.88.43.43.69.87.88 1.39.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.19.52-.45.96-.88 1.39-.43.43-.87.69-1.39.88-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.67 3.67 0 0 1-1.39-.88 3.67 3.67 0 0 1-.88-1.39c-.16-.42-.36-1.05-.41-2.22C2.01 15.58 2 15.2 2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.19-.52.45-.96.88-1.39.43-.43.87-.69 1.39-.88.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.36.13-.62.29-.9.57-.28.28-.44.54-.57.9-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.13.36.29.62.57.9.28.28.54.44.9.57.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.36-.13.62-.29.9-.57.28-.28.44-.54.57-.9.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17-.13-.36-.29-.62-.57-.9-.28-.28-.54-.44-.9-.57-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.38a4.48 4.48 0 1 1 0 8.96 4.48 4.48 0 0 1 0-8.96Zm0 7.4a2.92 2.92 0 1 0 0-5.84 2.92 2.92 0 0 0 0 5.84Zm5.7-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
+                <span>Instagram</span>
+              </a>
+            </div>
+
+            <div class="cta-row">
+              <a href="resume/gerardo-sison-resume.pdf" target="_blank" rel="noopener" class="btn btn-dark">
+                View Resume
+              </a>
+              <a href="portfolio/portfolio.pdf" target="_blank" rel="noopener" download="Gerardo-Sison-Portfolio.pdf" class="btn btn-outline">
+                Download Portfolio
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. FEATURED PROJECT (SPOTLIGHT) -->
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">FEATURED PROJECT // SPOTLIGHT</span>
+              <h2 class="section-title">AI Study Assistant Platform</h2>
+            </div>
+            <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
+          </div>
+
+          <div class="spotlight-card project-card" data-project="project-1" tabindex="0">
+            <div class="spotlight-preview">
+              <div class="preview-mockup">
+                <div class="mockup-bar"><span></span><span></span><span></span></div>
+                <div class="mockup-content">
+                  <span class="mockup-tag font-mono">Full Stack &middot; AI Integration</span>
+                  <p class="mockup-title">AI Study Assistant Platform</p>
+                  <p class="mockup-sub text-muted">Automated lecture summarization, Anki flashcard generation &amp; interactive quizzes.</p>
+                </div>
+              </div>
+              <span class="expand-indicator" title="Expand Case Study">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+              </span>
+            </div>
+            <div class="spotlight-body">
+              <div class="project-tags font-mono">
+                <span class="tag-badge">#1 AI STUDY TOOL</span>
+                <span class="tag-badge">NEXT.JS</span>
+                <span class="tag-badge">GEMINI API</span>
+                <span class="tag-badge">TAILWIND</span>
+              </div>
+              <p class="spotlight-desc">
+                An intelligent academic workspace built for university students to process lecture notes, generate structured concept summaries, and automatically formulate practice recall quizzes.
+              </p>
+              <div class="spotlight-footer">
+                <button type="button" class="btn-text font-mono">VIEW CASE STUDY &rarr;</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. ABOUT ME -->
+        <section class="section">
+          <div class="section-head">
+            <span class="section-tag font-mono">01 // PROFILE</span>
+            <h2 class="section-title">About Me</h2>
+          </div>
+          <div class="about-narrative">
+            <p>
+              I am a dedicated Information Technology student and software developer with a strong passion for designing clean, high-performance web applications and exploring intelligent software systems.
+            </p>
+            <p>
+              My journey into programming began with a curiosity for how interactive systems work under the hood. Over the years, that curiosity transformed into building scalable full-stack applications, collaborating with teams on open-source projects, and constantly experimenting with modern engineering stacks.
+            </p>
+            <p>
+              When I am not coding, I actively participate in collegiate hackathons, attend developer meetups, and mentor peers in web development fundamentals. I value writing maintainable code, thoughtful UI/UX design, and disciplined problem-solving.
+            </p>
+          </div>
+        </section>
+
+        <!-- 4. EDUCATION -->
+        <section class="section">
+          <div class="section-head">
+            <span class="section-tag font-mono">02 // ACADEMICS</span>
+            <h2 class="section-title">Education</h2>
+          </div>
+          <div class="edu-list">
+            <!-- TUP Manila -->
+          <div class="edu-card">
+            <div class="edu-main">
+              <div class="edu-icon-wrap">
+                <img src="images/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
+                <p class="edu-degree">Bachelor of Science in Information Technology</p>
+                <p class="edu-detail text-muted">GPA: 1.45 / 1.0</p>
+              </div>
+            </div>
+            <span class="edu-period font-mono">2024 &ndash; Present</span>
+          </div>
+
+          <!-- Unida Christian Colleges -->
+          <div class="edu-card">
+            <div class="edu-main">
+              <div class="edu-icon-wrap">
+                <img src="images/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
+              </div>
+              <div>
+                <h3 class="edu-institution">Unida Christian Colleges</h3>
+                <p class="edu-degree">Science, Technology, Engineering, and Mathematics (STEM)</p>
+                <p class="edu-detail text-muted">With High Honors</p>
+              </div>
+            </div>
+            <span class="edu-period font-mono">2022 &ndash; 2024</span>
+          </div>
+          </div>
+        </section>
+
+        <!-- 5. EXPERIENCE & CERTIFICATIONS -->
+        <section class="section">
+          <div class="section-head">
+            <span class="section-tag font-mono">03 // CAREER</span>
+            <h2 class="section-title">Experience &amp; Certifications</h2>
+          </div>
+          
+          <h3 class="subheading font-mono">Work History</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date font-mono">2025 &mdash; Present</div>
+              <div class="timeline-body">
+                <div class="timeline-title-row">
+                  <h4 class="timeline-title">Quality Assurance Analyst</h4>
+                </div>
+                <p class="timeline-company">One Plus Solutions, Inc</p>
+                <ul class="timeline-bullets">
+                  <li>Executed detailed functional testing across core systems to identify, document, and isolate critical software errors.</li>
+                  <li>Logged and tracked technical bugs in issue-tracking systems to help developers streamline fixes and improve system reliability.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOOKSHELF CERTIFICATION SPINES -->
+          <div class="mt-8">
+            <h3 class="subheading font-mono">Certifications</h3>
+
+            <div class="cert-shelf" id="certShelf">
+              <!-- Spine 1: Postman -->
+              <div class="cert-spine" data-cert="postman" tabindex="0">
+                <div class="cert-spine-label font-mono">Postman Student Expert</div>
+                <div class="cert-spine-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="cert-spine-panel">
+                  <div class="cert-panel-info">
+                    <div class="cert-pill-row font-mono">
+                      <span class="tag-badge badge-dark">POSTMAN</span>
+                      <span class="tag-badge">STUDENT EXPERT</span>
+                    </div>
+                    <h4 class="cert-panel-title">Postman Student Expert</h4>
+                    <p class="cert-panel-issuer text-muted">Postman API Platform</p>
+                    <p class="cert-panel-desc">Certification demonstrating proficiency in API testing, documentation, and collaboration using Postman.</p>
+                    <span class="cert-panel-year font-mono">2025</span>
+                  </div>
+                  <div class="cert-panel-media">
+                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
+                      <img src="images/certificates/acm.png" alt="Postman Student Expert Certificate preview">
+                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
+                    </button>
+                    <a href="images/certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spine 2: ACM TechSprint -->
+              <div class="cert-spine" data-cert="acm" tabindex="0">
+                <div class="cert-spine-label font-mono">ACM TechSprint Certificate</div>
+                <div class="cert-spine-icon cert-spine-icon-highlight">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
+                <div class="cert-spine-panel">
+                  <div class="cert-panel-info">
+                    <div class="cert-pill-row font-mono">
+                      <span class="tag-badge badge-dark">ACM TECHSPRINT</span>
+                      <span class="tag-badge">ASTERIA 2025</span>
+                    </div>
+                    <h4 class="cert-panel-title">ACM TechSprint Certificate</h4>
+                    <p class="cert-panel-issuer text-muted">Far Eastern University &ndash; Technology</p>
+                    <p class="cert-panel-desc">Certificate of achievement and participation in the ACM TechSprint: Asteria Hackathon.</p>
+                    <span class="cert-panel-year font-mono">2025</span>
+                  </div>
+                  <div class="cert-panel-media">
+                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
+                      <img src="images/certificates/acm.png" alt="ACM TechSprint Certificate preview">
+                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
+                    </button>
+                    <a href="images/certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Spine 3: Meta Front-End -->
+              <div class="cert-spine is-open" data-cert="meta" tabindex="0">
+                <div class="cert-spine-label font-mono">Meta Front-End Developer</div>
+                <div class="cert-spine-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="cert-spine-panel">
+                  <div class="cert-panel-info">
+                    <div class="cert-pill-row font-mono">
+                      <span class="tag-badge">COURSERA</span>
+                      <span class="tag-badge">META</span>
+                    </div>
+                    <h4 class="cert-panel-title">Meta Front-End Developer</h4>
+                    <p class="cert-panel-issuer text-muted">Coursera / Meta</p>
+                    <p class="cert-panel-desc">Professional certification covering React, responsive design, UI testing, and version control.</p>
+                    <span class="cert-panel-year font-mono">2025</span>
+                  </div>
+                  <div class="cert-panel-media">
+                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
+                      <img src="images/certificates/acm.png" alt="Meta Front-End Developer Certificate preview">
+                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
+                    </button>
+                    <a href="certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
+                  </div>
+                </div>
+              </div>
+            </div> 
+          </div>
+        </section>
+
+         <!-- 7. PROJECTS — SUMMARY VIEW -->
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">04 // WORK</span>
+              <h2 class="section-title">Selected Projects</h2>
+            </div>
+            <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
+          </div>
+
+          <div class="summary-project-grid">
+            <!-- Summary Card 1 -->
+            <article class="summary-project-card project-card" data-project="project-1" tabindex="0">
+              <div class="summary-card-top">
+                <div class="summary-app-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+                </div>
+                <div class="summary-pill-group font-mono">
+                  <span class="tag-badge">AI INTEGRATION</span>
+                  <span class="tag-badge">NEXT.JS</span>
+                </div>
+              </div>
+              <h3 class="summary-card-title">AI Study Assistant</h3>
+              <p class="summary-card-desc">Intelligent student workspace for lecture parsing, summaries &amp; flashcard generation.</p>
+              <div class="summary-card-bottom">
+                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
+              </div>
+            </article>
+
+            <!-- Summary Card 2 -->
+            <article class="summary-project-card project-card" data-project="project-2" tabindex="0">
+              <div class="summary-card-top">
+                <div class="summary-app-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
+                </div>
+                <div class="summary-pill-group font-mono">
+                  <span class="tag-badge">DEV TOOL</span>
+                  <span class="tag-badge">TYPESCRIPT</span>
+                </div>
+              </div>
+              <h3 class="summary-card-title">DevFlow Task Manager</h3>
+              <p class="summary-card-desc">Zero-latency Kanban sprint planner designed specifically for indie hackers &amp; dev teams.</p>
+              <div class="summary-card-bottom">
+                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
+              </div>
+            </article>
+
+            <!-- Summary Card 3 -->
+            <article class="summary-project-card project-card" data-project="project-3" tabindex="0">
+              <div class="summary-card-top">
+                <div class="summary-app-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                </div>
+                <div class="summary-pill-group font-mono">
+                  <span class="tag-badge">COMMERCE</span>
+                  <span class="tag-badge">STRIPE</span>
+                </div>
+              </div>
+              <h3 class="summary-card-title">Apparel Storefront</h3>
+              <p class="summary-card-desc">Headless e-commerce platform with real-time cart persistence &amp; Stripe Checkout integration.</p>
+              <div class="summary-card-bottom">
+                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 6. TOOLS & TECHNOLOGIES -->
+        <section class="section">
+          <div class="section-head">
+            <span class="section-tag font-mono">05 // TECH STACK</span>
+            <h2 class="section-title">Tools &amp; Technologies</h2>
+            <p class="section-intro text-muted">
+              A comprehensive toolkit of languages, frameworks, cloud services, and tools I use to build software.
+            </p>
+          </div>
+
+          <div class="tech-stack-container">
+            <!-- Category 1: Frontend & Backend Development -->
+            <div class="tech-category-block">
+              <h3 class="tech-category-heading font-mono">Frontend &amp; Backend Development</h3>
+              <div class="tech-pills-row">
+                <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">CSS3</span>
+                <span class="tech-pill">Bootstrap</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">JavaScript</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Express.js</span>
+                <span class="tech-pill">React.js</span>
+                <span class="tech-pill">Next.js</span>
+                <span class="tech-pill">GraphQL</span>
+                <span class="tech-pill">C#</span>
+                <span class="tech-pill">.NET</span>
+                <span class="tech-pill">Dart</span>
+                <span class="tech-pill">Flutter</span>
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">FastAPI</span>
+                <span class="tech-pill">Java</span>
+              </div>
+            </div>
+
+            <!-- Category 2: Cloud, BaaS, Database & CI/CD Management -->
+            <div class="tech-category-block">
+              <h3 class="tech-category-heading font-mono">Cloud, BaaS, Database &amp; CI/CD Management</h3>
+              <div class="tech-pills-row">
+                <span class="tech-pill">Azure</span>
+                <span class="tech-pill">Firebase</span>
+                <span class="tech-pill">Supabase</span>
+                <span class="tech-pill">PostgreSQL</span>
+                <span class="tech-pill">MongoDB</span>
+                <span class="tech-pill">Git</span>
+                <span class="tech-pill">GitHub</span>
+                <span class="tech-pill">GitLab</span>
+                <span class="tech-pill">Codemagic</span>
+              </div>
+            </div>
+
+            <!-- Category 3: Artificial Intelligence & Machine Learning -->
+            <div class="tech-category-block">
+              <h3 class="tech-category-heading font-mono">Artificial Intelligence &amp; Machine Learning</h3>
+              <div class="tech-pills-row">
+                <span class="tech-pill">Azure AI</span>
+                <span class="tech-pill">Azure ML</span>
+                <span class="tech-pill">TensorFlow</span>
+                <span class="tech-pill">Keras</span>
+                <span class="tech-pill">PyTorch</span>
+                <span class="tech-pill">Scikit-learn</span>
+                <span class="tech-pill">OpenCV</span>
+                <span class="tech-pill">LangChain</span>
+              </div>
+            </div>
+
+            <!-- Category 4: Code Editors & IDEs -->
+            <div class="tech-category-block">
+              <h3 class="tech-category-heading font-mono">Code Editors &amp; IDEs</h3>
+              <div class="tech-pills-row">
+                <span class="tech-pill">Visual Studio Code</span>
+                <span class="tech-pill">Visual Studio</span>
+                <span class="tech-pill">Android Studio</span>
+                <span class="tech-pill">IntelliJ IDEA</span>
+                <span class="tech-pill">Codespaces</span>
+                <span class="tech-pill">CodeSandbox</span>
+                <span class="tech-pill">Google Colab</span>
+              </div>
+            </div>
+
+            <!-- Category 5: Project Management & Designing -->
+            <div class="tech-category-block">
+              <h3 class="tech-category-heading font-mono">Project Management &amp; Designing</h3>
+              <div class="tech-pills-row">
+                <span class="tech-pill">ClickUp</span>
+                <span class="tech-pill">Jira</span>
+                <span class="tech-pill">Microsoft 365</span>
+                <span class="tech-pill">Figma</span>
+              </div>
+            </div>
+
+            <p class="tech-footer-note font-mono text-muted">
+              Note: I am not an expert in all of these, but I am continuously learning and expanding my stack.
+            </p>
+          </div>
+        </section>
+
+        <!-- 8. CONTACT ("LET'S WORK TOGETHER") -->
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">06 // GET IN TOUCH</span>
+              <h2 class="section-title">Let's work together</h2>
+            </div>
+            <a href="/contact" data-link class="section-nav-link font-mono">CONTACT PAGE &rarr;</a>
+          </div>
+
+          <p class="section-intro text-muted" style="margin-bottom: 24px;">
+            Currently open to freelance opportunities, internships, and technical collaborations. Have an idea or project in mind? Reach out anytime.
+          </p>
+
+          <div class="contact-channels-grid">
+            <a href="mailto:you@example.com" class="channel-card">
+              <div class="channel-info">
+                <span class="channel-type font-mono">DIRECT EMAIL</span>
+                <h3 class="channel-title">you@example.com</h3>
+                <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
+              </div>
+              <span class="channel-chevron font-mono">&rarr;</span>
+            </a>
+
+            <a href="https://calendly.com" target="_blank" rel="noopener" class="channel-card">
+              <div class="channel-info">
+                <span class="channel-type font-mono">SCHEDULE MEETING</span>
+                <h3 class="channel-title">Schedule a 15-min Call</h3>
+                <p class="channel-desc text-muted">Pick a time that works best to discuss opportunities.</p>
+              </div>
+              <span class="channel-chevron font-mono">&rarr;</span>
+            </a>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- =========================================================
+           ROUTE 2: PROJECTS PAGE (/projects) — FULL DETAIL VIEW
+           ========================================================= -->
+      <div id="view-projects" class="page-view">
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">PORTFOLIO</span>
+              <h1 class="section-title">All Featured Projects</h1>
+            </div>
+            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+          </div>
+          <p class="section-intro text-muted">
+            A comprehensive showcase of production applications, AI integrations, and developer tools. Click any card to expand full case study.
+          </p>
+
+          <div class="project-grid mt-6">
+            <!-- Project 1 -->
+            <article class="project-card" data-project="project-1" tabindex="0">
+              <div class="project-preview">
+                <div class="preview-mockup">
+                  <div class="mockup-bar"><span></span><span></span><span></span></div>
+                  <div class="mockup-content">
+                    <span class="mockup-tag font-mono">Full Stack App</span>
+                    <p class="mockup-title">AI Study Assistant Platform</p>
+                  </div>
+                </div>
+                <span class="expand-indicator" title="Expand Details">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                </span>
+              </div>
+              <div class="project-body">
+                <div class="project-tags font-mono">
+                  <span>React</span>
+                  <span>Next.js</span>
+                  <span>Gemini API</span>
+                  <span>Tailwind</span>
+                </div>
+                <h3 class="project-title">AI Study Assistant Platform</h3>
+                <p class="project-desc">An intelligent student workspace for generating summaries, flashcards, and quizzes from lecture notes.</p>
+                <div class="project-footer">
+                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card" data-project="project-2" tabindex="0">
+              <div class="project-preview">
+                <div class="preview-mockup">
+                  <div class="mockup-bar"><span></span><span></span><span></span></div>
+                  <div class="mockup-content">
+                    <span class="mockup-tag font-mono">Web Application</span>
+                    <p class="mockup-title">DevFlow Task Management</p>
+                  </div>
+                </div>
+                <span class="expand-indicator" title="Expand Details">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                </span>
+              </div>
+              <div class="project-body">
+                <div class="project-tags font-mono">
+                  <span>TypeScript</span>
+                  <span>Node.js</span>
+                  <span>PostgreSQL</span>
+                  <span>Prisma</span>
+                </div>
+                <h3 class="project-title">DevFlow Task Management</h3>
+                <p class="project-desc">Minimalist Kanban and sprint planner designed specifically for indie hackers and small dev teams.</p>
+                <div class="project-footer">
+                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card" data-project="project-3" tabindex="0">
+              <div class="project-preview">
+                <div class="preview-mockup">
+                  <div class="mockup-bar"><span></span><span></span><span></span></div>
+                  <div class="mockup-content">
+                    <span class="mockup-tag font-mono">E-Commerce UI</span>
+                    <p class="mockup-title">Minimalist Apparel Storefront</p>
+                  </div>
+                </div>
+                <span class="expand-indicator" title="Expand Details">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                </span>
+              </div>
+              <div class="project-body">
+                <div class="project-tags font-mono">
+                  <span>Next.js</span>
+                  <span>Stripe</span>
+                  <span>Tailwind CSS</span>
+                </div>
+                <h3 class="project-title">Minimalist Apparel Storefront</h3>
+                <p class="project-desc">Fast, headless e-commerce store with real-time cart persistence, Stripe checkout, and clean micro-interactions.</p>
+                <div class="project-footer">
+                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================================================
+           ROUTE 3: EVENTS PAGE (/events)
+           ========================================================= -->
+      <div id="view-events" class="page-view">
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">COMMUNITY</span>
+              <h1 class="section-title">Events &amp; Hackathons</h1>
+            </div>
+            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+          </div>
+          <p class="section-intro text-muted">
+            Hackathons, speaking engagements, and tech community workshops I have participated in.
+          </p>
+
+          <div class="timeline mt-6">
+            <div class="timeline-item">
+              <div class="timeline-date font-mono">Oct 2025</div>
+              <div class="timeline-body">
+                <div class="timeline-title-row">
+                  <h4 class="timeline-title">National AI Hackathon 2025</h4>
+                  <span class="badge badge-accent">1st Runner Up</span>
+                </div>
+                <p class="timeline-company">Organized by TechPH Community</p>
+                <p class="timeline-desc">Built an automated accessibility auditor for public portals in 36 hours. Handled frontend architecture and Gemini API pipelines.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date font-mono">Jul 2025</div>
+              <div class="timeline-body">
+                <div class="timeline-title-row">
+                  <h4 class="timeline-title">Google Developer Student Clubs Workshop</h4>
+                  <span class="badge">Speaker / Lead</span>
+                </div>
+                <p class="timeline-company">GDSC University Chapter</p>
+                <p class="timeline-desc">Conducted a hands-on workshop introducing 120+ first-year students to modern Git, GitHub collaborative workflows, and static web deployment.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- =========================================================
+           ROUTE 4: CONTACT ME PAGE (/contact)
+           ========================================================= -->
+      <div id="view-contact" class="page-view">
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">CONNECT</span>
+              <h1 class="section-title">Contact Me</h1>
+            </div>
+            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+          </div>
+          <p class="section-intro text-muted">
+            Whether you have a question, project proposal, or want to connect, feel free to reach out directly.
+          </p>
+
+          <div class="contact-channels-grid mt-6">
+            <a href="mailto:you@example.com" class="channel-card">
+              <div class="channel-info">
+                <span class="channel-type font-mono">DIRECT EMAIL</span>
+                <h3 class="channel-title">you@example.com</h3>
+                <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
+              </div>
+              <span class="channel-chevron font-mono">&rarr;</span>
+            </a>
+
+            <a href="https://calendly.com" target="_blank" rel="noopener" class="channel-card">
+              <div class="channel-info">
+                <span class="channel-type font-mono">SCHEDULE MEETING</span>
+                <h3 class="channel-title">Schedule a 15-min Call</h3>
+                <p class="channel-desc text-muted">Pick a time that works best to discuss opportunities.</p>
+              </div>
+              <span class="channel-chevron font-mono">&rarr;</span>
+            </a>
+          </div>
+
+          <!-- Direct Message Form -->
+          <div class="mt-10">
+            <h3 class="subheading font-mono">Send a Direct Message</h3>
+            <form id="contactForm" class="contact-form">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name" class="font-mono">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Alex Morgan" required>
+                </div>
+                <div class="form-field">
+                  <label for="email" class="font-mono">Email</label>
+                  <input type="email" id="email" name="email" placeholder="alex@company.com" required>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="message" class="font-mono">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell me about your project or opportunity..." required></textarea>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-dark">
+                  Send Message <span class="arrow-icon">&rarr;</span>
+                </button>
+                <span class="form-status font-mono" id="formStatus"></span>
+              </div>
+            </form>
+          </div>
+        </section>
+      </div>
+
+      <!-- ===== FOOTER ===== -->
+      <footer class="footer">
+        <div class="footer-inner">
+          <p class="font-mono text-muted">&copy; 2026 Gerardo Sison &middot; Built with clean semantic code.</p>
+          <a href="/contact" data-link class="back-top font-mono">Get in Touch &rarr;</a>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ===== SCREEN EXPAND MODAL ===== -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-meta font-mono" id="modalMeta">Full-Stack Application &middot; 2025</div>
+        <h2 class="modal-title" id="modalTitle">Project Title</h2>
+      </div>
+
+      <div class="modal-preview-box" id="modalPreviewBox">
+        <div class="preview-hero-mockup">
+          <div class="mockup-bar"><span></span><span></span><span></span></div>
+          <div class="mockup-screen" id="modalMockupContent"></div>
+        </div>
+      </div>
+
+      <div class="modal-content-grid">
+        <div class="modal-main-text">
+          <h3 class="modal-subhead font-mono">About the Project</h3>
+          <p id="modalDescription" class="modal-desc">Detailed walkthrough of the problem, solution, and architecture.</p>
+
+          <h3 class="modal-subhead font-mono mt-6">Key Contributions</h3>
+          <ul class="modal-bullets" id="modalBullets"></ul>
+        </div>
+
+        <div class="modal-sidebar">
+          <div class="modal-meta-block">
+            <span class="modal-label font-mono">Technologies</span>
+            <div class="tag-list" id="modalTags"></div>
+          </div>
+
+          <div class="modal-meta-block mt-4">
+            <span class="modal-label font-mono">Links</span>
+            <div class="modal-links" id="modalLinks"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
