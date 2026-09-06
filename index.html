@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gerardo Sison — Software Developer</title>
-  <meta name="description" content="Portfolio of Gerardo Sison — Software Developer & Student.">
+  <meta name="description" content="Portfolio of Gerardo Sison — Student Software Engineer">
 
   <!-- Google Fonts: Inter (Clean UI) & JetBrains Mono (Technical / Dates) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -74,7 +74,7 @@
               <p class="location font-mono">Cavite, Philippines</p>
             </div>
 
-            <h2 class="role">Software Developer &amp; Student</h2>
+            <h2 class="role">Student Software Engineer</h2>
             <p class="bio">
               I build reliable web applications, clean user interfaces, and explore practical AI integrations.
               Focused on modern frontend engineering, scalable backend APIs, and continuous technical growth.
@@ -129,13 +129,13 @@
           </div>
           <div class="about-narrative">
             <p>
-              I am a dedicated Information Technology student and software developer with a strong passion for designing clean, high-performance web applications and exploring intelligent software systems.
+              I am a Bachelor of Science in Information Technology student at the Technological University of the Philippines Manila. I enjoy exploring different areas of technology, including web and app development, IoT, and networking.
             </p>
             <p>
-              My journey into programming began with a curiosity for how interactive systems work under the hood. Over the years, that curiosity transformed into building scalable full-stack applications, collaborating with teams on open-source projects, and constantly experimenting with modern engineering stacks.
+              For me, learning becomes meaningful when I can put what I learn into practice. I learn best by trying things out, experimenting, and figuring out how things work through hands-on experience and trial and error.
             </p>
             <p>
-              When I am not coding, I actively participate in collegiate hackathons, attend developer meetups, and mentor peers in web development fundamentals. I value writing maintainable code, thoughtful UI/UX design, and disciplined problem-solving.
+              I also enjoy collaborating with other developers because it gives me the opportunity to learn from others, understand concepts more deeply, and build meaningful connections. Outside of software development, I like tinkering with hardware and wiring, joining hackathons, attending developer meetups, and helping peers who are just starting their journey in technology.
             </p>
           </div>
         </section>
@@ -151,12 +151,12 @@
             <div class="edu-card">
               <div class="edu-main">
                 <div class="edu-icon-wrap">
-                  <img src="images/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
+                  <img src="images/school_logo/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
                 </div>
                 <div>
                   <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
                   <p class="edu-degree">Bachelor of Science in Information Technology</p>
-                  <p class="edu-detail text-muted">GPA: 1.45 / 1.0</p>
+                  <p class="edu-detail text-muted">GWA: 1.46 / 1.0</p>
                 </div>
               </div>
               <span class="edu-period font-mono">2024 &ndash; Present</span>
@@ -166,7 +166,7 @@
             <div class="edu-card">
               <div class="edu-main">
                 <div class="edu-icon-wrap">
-                  <img src="images/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
+                  <img src="images/school_logo/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
                 </div>
                 <div>
                   <h3 class="edu-institution">Unida Christian Colleges</h3>
@@ -205,8 +205,11 @@
 
           <!-- BOOKSHELF CERTIFICATION SPINES — rendered from CERTS in data.js -->
           <div class="mt-8">
-            <h3 class="subheading font-mono">Certifications</h3>
-            <div class="cert-shelf" id="certShelf"><!-- filled by script.js from CERTS --></div>
+            <div class="section-head-flex" style="margin-bottom: 20px;">
+              <h3 class="subheading font-mono" style="margin-bottom: 0;">Certifications</h3>
+              <a href="/certifications" data-link class="section-nav-link font-mono">VIEW ALL &rarr;</a>
+            </div>
+            <div class="cert-list" id="certShelf"><!-- filled by script.js from CERTS --></div>
           </div>
         </section>
 
@@ -225,100 +228,22 @@
 
         <!-- 7. TOOLS & TECHNOLOGIES -->
         <section class="section">
-          <div class="section-head">
-            <span class="section-tag font-mono">05 // TECH STACK</span>
-            <h2 class="section-title">Tools &amp; Technologies</h2>
-            <p class="section-intro text-muted">
-              A comprehensive toolkit of languages, frameworks, cloud services, and tools I use to build software.
-            </p>
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">05 // TECH STACK</span>
+              <h2 class="section-title">Tools &amp; Technologies</h2>
+              <p class="section-intro text-muted">
+                A comprehensive toolkit of languages, frameworks, cloud services, and tools I use to build software.
+              </p>
+            </div>
+            <button type="button" class="section-nav-link font-mono" id="techViewToggle">VIEW ALL &rarr;</button>
           </div>
 
-          <div class="tech-stack-container">
-            <!-- Category 1: Frontend & Backend Development -->
-            <div class="tech-category-block">
-              <h3 class="tech-category-heading font-mono">Frontend &amp; Backend Development</h3>
-              <div class="tech-pills-row">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">Bootstrap</span>
-                <span class="tech-pill">Tailwind CSS</span>
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">TypeScript</span>
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">Express.js</span>
-                <span class="tech-pill">React.js</span>
-                <span class="tech-pill">Next.js</span>
-                <span class="tech-pill">GraphQL</span>
-                <span class="tech-pill">C#</span>
-                <span class="tech-pill">.NET</span>
-                <span class="tech-pill">Dart</span>
-                <span class="tech-pill">Flutter</span>
-                <span class="tech-pill">Python</span>
-                <span class="tech-pill">FastAPI</span>
-                <span class="tech-pill">Java</span>
-              </div>
-            </div>
+          <div class="tech-stack-container" id="techStackContainer"><!-- filled by script.js from TECH_STACK --></div>
 
-            <!-- Category 2: Cloud, BaaS, Database & CI/CD Management -->
-            <div class="tech-category-block">
-              <h3 class="tech-category-heading font-mono">Cloud, BaaS, Database &amp; CI/CD Management</h3>
-              <div class="tech-pills-row">
-                <span class="tech-pill">Azure</span>
-                <span class="tech-pill">Firebase</span>
-                <span class="tech-pill">Supabase</span>
-                <span class="tech-pill">PostgreSQL</span>
-                <span class="tech-pill">MongoDB</span>
-                <span class="tech-pill">Git</span>
-                <span class="tech-pill">GitHub</span>
-                <span class="tech-pill">GitLab</span>
-                <span class="tech-pill">Codemagic</span>
-              </div>
-            </div>
-
-            <!-- Category 3: Artificial Intelligence & Machine Learning -->
-            <div class="tech-category-block">
-              <h3 class="tech-category-heading font-mono">Artificial Intelligence &amp; Machine Learning</h3>
-              <div class="tech-pills-row">
-                <span class="tech-pill">Azure AI</span>
-                <span class="tech-pill">Azure ML</span>
-                <span class="tech-pill">TensorFlow</span>
-                <span class="tech-pill">Keras</span>
-                <span class="tech-pill">PyTorch</span>
-                <span class="tech-pill">Scikit-learn</span>
-                <span class="tech-pill">OpenCV</span>
-                <span class="tech-pill">LangChain</span>
-              </div>
-            </div>
-
-            <!-- Category 4: Code Editors & IDEs -->
-            <div class="tech-category-block">
-              <h3 class="tech-category-heading font-mono">Code Editors &amp; IDEs</h3>
-              <div class="tech-pills-row">
-                <span class="tech-pill">Visual Studio Code</span>
-                <span class="tech-pill">Visual Studio</span>
-                <span class="tech-pill">Android Studio</span>
-                <span class="tech-pill">IntelliJ IDEA</span>
-                <span class="tech-pill">Codespaces</span>
-                <span class="tech-pill">CodeSandbox</span>
-                <span class="tech-pill">Google Colab</span>
-              </div>
-            </div>
-
-            <!-- Category 5: Project Management & Designing -->
-            <div class="tech-category-block">
-              <h3 class="tech-category-heading font-mono">Project Management &amp; Designing</h3>
-              <div class="tech-pills-row">
-                <span class="tech-pill">ClickUp</span>
-                <span class="tech-pill">Jira</span>
-                <span class="tech-pill">Microsoft 365</span>
-                <span class="tech-pill">Figma</span>
-              </div>
-            </div>
-
-            <p class="tech-footer-note font-mono text-muted">
-              Note: I am not an expert in all of these, but I am continuously learning and expanding my stack.
-            </p>
-          </div>
+          <p class="tech-footer-note font-mono text-muted">
+            Note: I am not an expert in all of these, but I am continuously learning and expanding my stack.
+          </p>
         </section>
 
         <!-- 8. CONTACT ("LET'S WORK TOGETHER") -->
@@ -346,9 +271,7 @@
             </a>
           </div>
         </section>
-
       </div>
-      <!-- /view-home -->
 
       <!-- =========================================================
            ROUTE 2: PROJECTS PAGE (/projects) — FULL DETAIL VIEW
@@ -371,6 +294,26 @@
       </div>
 
       <!-- =========================================================
+           ROUTE 5: CERTIFICATIONS PAGE (/certifications)
+           ========================================================= -->
+      <div id="view-certifications" class="page-view">
+        <section class="section">
+          <div class="section-head section-head-flex">
+            <div>
+              <span class="section-tag font-mono">CREDENTIALS</span>
+              <h1 class="section-title">All Certifications</h1>
+            </div>
+            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+          </div>
+          <p class="section-intro text-muted">
+            A complete record of certifications, courses, and credentials I've earned.
+          </p>
+
+          <div class="cert-list mt-6" id="fullCertList"><!-- filled by script.js from CERTS --></div>
+        </section>
+      </div>
+
+      <!-- =========================================================
            ROUTE 3: EVENTS PAGE (/events)
            ========================================================= -->
       <div id="view-events" class="page-view">
@@ -388,26 +331,38 @@
 
           <div class="timeline mt-6">
             <div class="timeline-item">
-              <div class="timeline-date font-mono">Oct 2025</div>
+              <div class="timeline-date font-mono">Mar 2026</div>
               <div class="timeline-body">
                 <div class="timeline-title-row">
-                  <h4 class="timeline-title">National AI Hackathon 2025</h4>
-                  <span class="badge badge-accent">1st Runner Up</span>
+                  <h4 class="timeline-title">Google Study Jam 2026: Dream, Design, Develop!</h4>
+                  <span class="badge">Finance Auditor</span>
                 </div>
-                <p class="timeline-company">Organized by TechPH Community</p>
-                <p class="timeline-desc">Built an automated accessibility auditor for public portals in 36 hours. Handled frontend architecture and Gemini API pipelines.</p>
+                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
+                <p class="timeline-desc">Spearheaded member engagement efforts during the organization's first-ever off-campus event, hosted at WhiteCloak Technologies, across CodeLab activities and a frontend development hackathon.</p>
               </div>
             </div>
 
             <div class="timeline-item">
-              <div class="timeline-date font-mono">Jul 2025</div>
+              <div class="timeline-date font-mono">Nov 2025</div>
               <div class="timeline-body">
                 <div class="timeline-title-row">
-                  <h4 class="timeline-title">Google Developer Student Clubs Workshop</h4>
-                  <span class="badge">Speaker / Lead</span>
+                  <h4 class="timeline-title">Campus DEVCON Manila 2025: Haunted by Innovation</h4>
+                  <span class="badge">Finance Auditor</span>
                 </div>
-                <p class="timeline-company">GDSC University Chapter</p>
-                <p class="timeline-desc">Conducted a hands-on workshop introducing 120+ first-year students to modern Git, GitHub collaborative workflows, and static web deployment.</p>
+                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
+                <p class="timeline-desc">Facilitated event operations for a multi-university tech conference featuring Hackathon and Game Jam finals, in partnership with Gen AI Philippines, CyberPH, and other tech organizations.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-date font-mono">Nov 2025</div>
+              <div class="timeline-body">
+                <div class="timeline-title-row">
+                  <h4 class="timeline-title">In4Session: Legacy Beyond Google Technologies</h4>
+                  <span class="badge">Finance Auditor</span>
+                </div>
+                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
+                <p class="timeline-desc">Managed new member onboarding, overseeing distribution of membership kits including IDs and org merch to 200+ student "Googlers" as part of their induction into GDGoC's mission and technology roadmap.</p>
               </div>
             </div>
           </div>

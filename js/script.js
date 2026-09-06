@@ -13,7 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '/': 'view-home',
     '/projects': 'view-projects',
     '/events': 'view-events',
-    '/contact': 'view-contact'
+    '/contact': 'view-contact',
+    '/certifications': 'view-certifications'
   };
 
   const navLinks = document.querySelectorAll('.nav-link');
@@ -51,7 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
       '/': 'Gerardo Sison — Software Developer',
       '/projects': 'Projects — Gerardo Sison',
       '/events': 'Events & Hackathons — Gerardo Sison',
-      '/contact': 'Contact Me — Gerardo Sison'
+      '/contact': 'Contact Me — Gerardo Sison',
+      '/certifications': 'Certifications — Gerardo Sison'
     };
     document.title = titles[validPath] || 'Gerardo Sison — Software Developer';
 
@@ -98,15 +100,18 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
 
     return `
-      <div class="spotlight-card project-card" data-project="${project.id}" tabindex="0">
+        <div class="spotlight-card project-card" data-project="${project.id}" tabindex="0" style="--accent: ${project.accent || '#111827'}">
         <div class="spotlight-preview">
           <div class="preview-mockup">
             <div class="mockup-bar"><span></span><span></span><span></span></div>
-            <div class="mockup-content">
-              <span class="mockup-tag font-mono">${project.category}</span>
-              <p class="mockup-title">${project.title}</p>
-              <p class="mockup-sub text-muted">${project.summary}</p>
-            </div>
+            ${project.image
+              ? `<img src="${project.image}" alt="${project.title}" class="mockup-image">`
+              : `<div class="mockup-content">
+                  <span class="mockup-tag font-mono">${project.category}</span>
+                  <p class="mockup-title">${project.title}</p>
+                  <p class="mockup-sub text-muted">${project.summary}</p>
+                </div>`
+            }
           </div>
           <span class="expand-indicator" title="Expand Case Study">${svgIcon('expand', { width: 16, height: 16 })}</span>
         </div>
@@ -126,9 +131,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
 
     return `
-      <article class="summary-project-card project-card" data-project="${project.id}" tabindex="0">
+        <article class="summary-project-card project-card" data-project="${project.id}" tabindex="0" style="--accent: ${project.accent || '#111827'}">
         <div class="summary-card-top">
-          <div class="summary-app-icon">${svgIcon(project.icon)}</div>
+          ${project.image
+            ? `<img src="${project.image}" alt="${project.title}" class="summary-app-image">`
+            : `<div class="summary-app-icon">${svgIcon(project.icon)}</div>`
+          }
           <div class="summary-pill-group font-mono">${pills}</div>
         </div>
         <h3 class="summary-card-title">${project.title}</h3>
@@ -143,14 +151,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const tags = project.tags.slice(0, 4).map(t => `<span>${t}</span>`).join('');
 
     return `
-      <article class="project-card" data-project="${project.id}" tabindex="0">
+        <article class="project-card" data-project="${project.id}" tabindex="0" style="--accent: ${project.accent || '#111827'}">
         <div class="project-preview">
           <div class="preview-mockup">
             <div class="mockup-bar"><span></span><span></span><span></span></div>
-            <div class="mockup-content">
-              <span class="mockup-tag font-mono">${project.category}</span>
-              <p class="mockup-title">${project.title}</p>
-            </div>
+            ${project.image
+              ? `<img src="${project.image}" alt="${project.title}" class="mockup-image">`
+              : `<div class="mockup-content">
+                  <span class="mockup-tag font-mono">${project.category}</span>
+                  <p class="mockup-title">${project.title}</p>
+                  <p class="mockup-sub text-muted">${project.summary}</p>
+                </div>`
+            }
           </div>
           <span class="expand-indicator" title="Expand Details">${svgIcon('expand', { width: 16, height: 16 })}</span>
         </div>
@@ -202,16 +214,15 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTags.innerHTML = data.tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
 
     modalLinks.innerHTML = `
-      <a href="${data.demoUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-dark w-full">Live Demo &rarr;</a>
-      <a href="${data.githubUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-light w-full mt-2">Source Code &rarr;</a>
+      <a href="${data.githubUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-dark w-full">Source Code &rarr;</a>
     `;
 
-    modalMockupContent.innerHTML = `
-      <div>
+    modalMockupContent.innerHTML = data.image
+    ? `<img src="${data.image}" alt="${data.title}" class="modal-mockup-image">`
+    : `<div>
         <p class="font-mono text-muted" style="font-size: 11px;">[ Interactive Application Preview ]</p>
         <p style="font-weight: 700; font-size: 18px; margin-top: 4px;">${data.title}</p>
-      </div>
-    `;
+      </div>`;
 
     projectModal.classList.add('is-active');
     projectModal.setAttribute('aria-hidden', 'false');
@@ -249,65 +260,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ===== 4. CERTIFICATION BOOKSHELF (uses CERTS from data.js) =====
+    // ===== 4. CERTIFICATION TIMELINE LIST (uses CERTS from data.js) =====
+  const CERT_PREVIEW_COUNT = 2;
 
-  function renderCertSpine(cert) {
-    const pillsHtml = cert.pills
-      .map(p => `<span class="tag-badge${p.dark ? ' badge-dark' : ''}">${p.text}</span>`)
-      .join('');
-
+  function renderCertRow(cert) {
     return `
-      <div class="cert-spine${cert.openByDefault ? ' is-open' : ''}" data-cert="${cert.id}" tabindex="0">
-        <div class="cert-spine-label font-mono">${cert.label}</div>
-        <div class="cert-spine-icon${cert.highlight ? ' cert-spine-icon-highlight' : ''}">${svgIcon(cert.icon, { width: 24, height: 24 })}</div>
-        <div class="cert-spine-panel">
-          <div class="cert-panel-info">
-            <div class="cert-pill-row font-mono">${pillsHtml}</div>
-            <h4 class="cert-panel-title">${cert.title}</h4>
-            <p class="cert-panel-issuer text-muted">${cert.issuer}</p>
-            <p class="cert-panel-desc">${cert.desc}</p>
-            <span class="cert-panel-year font-mono">${cert.year}</span>
-          </div>
-          <div class="cert-panel-media">
-            <button type="button" class="cert-preview-zoom" data-full="${cert.img}">
-              <img src="${cert.img}" alt="${cert.title} preview">
-              <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
-            </button>
-            <a href="${cert.pdf}" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
-          </div>
+      <div class="cert-row">
+        <div class="cert-date font-mono">${cert.date}</div>
+        <div class="cert-info">
+          <h4 class="cert-title">${cert.title}</h4>
+          <p class="cert-issuer text-muted">${cert.issuer}</p>
+          ${cert.credentialId ? `<p class="cert-credential font-mono text-muted">Credential ID ${cert.credentialId}</p>` : ''}
+          <button type="button" class="cert-thumb" data-full="${cert.img}">
+            <img src="${cert.img}" alt="${cert.title} preview">
+          </button>
         </div>
       </div>`;
   }
 
   function mountCertShelf() {
-    const shelf = document.getElementById('certShelf');
-    if (!shelf) return;
-    shelf.innerHTML = CERTS.map(renderCertSpine).join('');
-    wireCertSpines();
+    const previewMount = document.getElementById('certShelf');
+    const fullMount = document.getElementById('fullCertList');
+
+    if (previewMount) {
+      previewMount.innerHTML = CERTS.slice(0, CERT_PREVIEW_COUNT).map(renderCertRow).join('');
+    }
+    if (fullMount) {
+      fullMount.innerHTML = CERTS.map(renderCertRow).join('');
+    }
+
+    wireCertThumbs();
   }
 
-  function wireCertSpines() {
-    const certSpines = document.querySelectorAll('.cert-spine');
-    certSpines.forEach(spine => {
-      spine.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return; // let the PDF link open normally
-        if (e.target.closest('.cert-preview-zoom')) return; // let the zoom button handle its own click
-        if (spine.classList.contains('is-open')) return;
-        certSpines.forEach(s => s.classList.remove('is-open'));
-        spine.classList.add('is-open');
-      });
-      spine.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          spine.click();
-        }
-      });
-    });
-
-    // Wire the zoom-to-lightbox buttons (must run after spines are in the DOM)
-    document.querySelectorAll('.cert-preview-zoom').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
+  function wireCertThumbs() {
+    document.querySelectorAll('.cert-thumb').forEach(btn => {
+      btn.addEventListener('click', () => {
         const img = btn.querySelector('img');
         certLightboxImg.src = btn.dataset.full;
         certLightboxImg.alt = img ? img.alt : '';
@@ -363,8 +350,65 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+
+    // ===== 8. TECH STACK (marquee + static toggle, from data.js: TECH_STACK) =====
+  let techStaticView = false;
+
+  function renderTechPill(item) {
+    const icon = item.icon
+      ? `<i class="${item.icon} tech-pill-icon"></i>`
+      : `<span class="tech-pill-icon tech-pill-icon-fallback font-mono">${item.name.charAt(0)}</span>`;
+    return `<span class="tech-pill">${icon}<span>${item.name}</span></span>`;
+  }
+
+  function renderTechCategoryStatic(category) {
+    return `
+      <div class="tech-category-block">
+        <h3 class="tech-category-heading font-mono">${category.heading}</h3>
+        <div class="tech-pills-row">
+          ${category.items.map(renderTechPill).join('')}
+        </div>
+      </div>`;
+  }
+
+  function renderTechCategoryMarquee(category, index) {
+  const pillsHtml = category.items.map(renderTechPill).join('');
+  const direction = index % 2 === 0 ? 'marquee-left' : 'marquee-right';
+  const duration = category.speed || 28;
+  return `
+    <div class="tech-category-block">
+      <h3 class="tech-category-heading font-mono">${category.heading}</h3>
+      <div class="tech-marquee">
+        <div class="tech-marquee-track ${direction}" style="animation-duration: ${duration}s;">
+          ${pillsHtml}${pillsHtml}
+        </div>
+      </div>
+    </div>`;
+}
+
+  function mountTechStack() {
+    const mount = document.getElementById('techStackContainer');
+    const toggleBtn = document.getElementById('techViewToggle');
+    if (!mount) return;
+
+    mount.innerHTML = techStaticView
+      ? TECH_STACK.map(renderTechCategoryStatic).join('')
+      : TECH_STACK.map(renderTechCategoryMarquee).join('');
+
+    if (toggleBtn) {
+      toggleBtn.textContent = techStaticView ? '← VIEW SCROLLING' : 'VIEW ALL →';
+    }
+  }
+
+  document.getElementById('techViewToggle')?.addEventListener('click', () => {
+    techStaticView = !techStaticView;
+    mountTechStack();
+  });
+
   // ===== INITIAL RENDER =====
   mountProjectViews();
   mountCertShelf();
+  mountTechStack();
   renderRoute(getNormalizedPath());
 });
+
