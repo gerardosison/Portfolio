@@ -1,6 +1,9 @@
 /**
- * Gerardo Sison — Single Page Application (SPA) Client-Side Router
+ * Gerardo Sison — SPA Router + Content Renderer
  * Powered by HTML5 History API (pushState & popstate)
+ *
+ * All project/certification content lives in data.js (PROJECTS, CERTS).
+ * This file only renders that data into the page and wires up interactions.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -17,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileLinks = document.querySelectorAll('.mobile-link');
   const pageViews = document.querySelectorAll('.page-view');
 
-  // Normalize path string
   function getNormalizedPath(pathname = window.location.pathname) {
     let clean = pathname.trim();
     if (clean.endsWith('/index.html')) {
@@ -29,33 +31,22 @@ document.addEventListener('DOMContentLoaded', () => {
     return routes[clean] ? clean : '/';
   }
 
-  // Switch Active Page View
   function renderRoute(path) {
     const validPath = getNormalizedPath(path);
     const targetViewId = routes[validPath] || 'view-home';
 
-    // 1. Swap active class on views
     pageViews.forEach(view => {
-      if (view.id === targetViewId) {
-        view.classList.add('active');
-      } else {
-        view.classList.remove('active');
-      }
+      view.classList.toggle('active', view.id === targetViewId);
     });
 
-    // 2. Update Header active navigation pill
     navLinks.forEach(link => {
-      const linkRoute = link.getAttribute('data-route');
-      link.classList.toggle('active', linkRoute === validPath);
+      link.classList.toggle('active', link.getAttribute('data-route') === validPath);
     });
 
-    // 3. Update Mobile drawer active state
     mobileLinks.forEach(link => {
-      const linkRoute = link.getAttribute('data-route');
-      link.classList.toggle('active', linkRoute === validPath);
+      link.classList.toggle('active', link.getAttribute('data-route') === validPath);
     });
 
-    // 4. Update Document Title
     const titles = {
       '/': 'Gerardo Sison — Software Developer',
       '/projects': 'Projects — Gerardo Sison',
@@ -64,11 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     document.title = titles[validPath] || 'Gerardo Sison — Software Developer';
 
-    // 5. Scroll to top on navigation
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }
 
-  // Navigate using pushState
   function navigateTo(url) {
     const currentPath = getNormalizedPath();
     const targetPath = getNormalizedPath(url);
@@ -77,21 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         history.pushState({ path: targetPath }, '', targetPath);
       } catch (err) {
-        // Safe fallback
+        // Safe fallback if pushState is unavailable (e.g. file:// preview)
       }
       renderRoute(targetPath);
     }
   }
 
-  // Global Link Click Interceptor
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[data-link]');
     if (link) {
       e.preventDefault();
-      const href = link.getAttribute('href');
-      navigateTo(href);
+      navigateTo(link.getAttribute('href'));
 
-      // Close mobile menu if open
       const mobileMenu = document.getElementById('mobileMenu');
       if (mobileMenu && mobileMenu.classList.contains('is-open')) {
         mobileMenu.classList.remove('is-open');
@@ -99,58 +85,99 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Handle Browser Back / Forward buttons (popstate)
   window.addEventListener('popstate', () => {
     renderRoute(getNormalizedPath());
   });
 
-  // Initial Route Render on page load
-  renderRoute(getNormalizedPath());
+  // ===== 2. PROJECT CARD RENDERING (from data.js: PROJECTS) =====
 
-  // ===== 2. PROJECT DATA REPOSITORY (For Screen Expand Modal) =====
-  const projectsData = {
-    'project-1': {
-      meta: 'Full-Stack Application · 2025',
-      title: 'AI Study Assistant Platform',
-      desc: 'An end-to-end intelligent study companion built for university students. It processes lecture PDFs, creates structured summary briefs, and leverages the Gemini API to formulate interactive practice quizzes and active-recall flashcards.',
-      bullets: [
-        'Integrated Google Gemini API for fast contextual question generation.',
-        'Engineered responsive document parsing pipeline with client-side OCR caching.',
-        'Designed minimal, distraction-free aesthetic with dark mode and export to Anki.'
-      ],
-      tags: ['Next.js', 'React', 'Gemini API', 'TypeScript', 'Tailwind CSS', 'Vercel'],
-      demoUrl: 'https://example.com/demo',
-      githubUrl: 'https://github.com/gerardosison'
-    },
-    'project-2': {
-      meta: 'Web Application · 2025',
-      title: 'DevFlow Task Management',
-      desc: 'A lightweight, high-performance task management system engineered specifically for solo engineers and sprint teams. Focuses on zero-latency interactions and clean Kanban workflows.',
-      bullets: [
-        'Built with PostgreSQL and Prisma ORM for relational sprint dependencies.',
-        'Implemented keyboard shortcuts and drag-and-drop board cards.',
-        'Achieved sub-100ms API response latency with Edge endpoints.'
-      ],
-      tags: ['TypeScript', 'Node.js', 'PostgreSQL', 'Prisma', 'Express', 'Docker'],
-      demoUrl: 'https://example.com/demo',
-      githubUrl: 'https://github.com/gerardosison'
-    },
-    'project-3': {
-      meta: 'E-Commerce Architecture · 2024',
-      title: 'Minimalist Apparel Storefront',
-      desc: 'A headless e-commerce experience engineered for speed and visual storytelling. Features instant cart synchronization, localized currency switches, and Stripe Checkout.',
-      bullets: [
-        'Optimized Next.js dynamic routing and image rendering.',
-        'Full Stripe Payment Intents and webhook synchronization.',
-        'Lighthouse performance score 99/100 across mobile and desktop.'
-      ],
-      tags: ['Next.js', 'Stripe API', 'Tailwind CSS', 'Zustand', 'PostgreSQL'],
-      demoUrl: 'https://example.com/demo',
-      githubUrl: 'https://github.com/gerardosison'
-    }
-  };
+  function renderSpotlightCard(project) {
+    const badges = [project.calloutBadge, ...project.tags.slice(0, 3)]
+      .filter(Boolean)
+      .map(b => `<span class="tag-badge">${b}</span>`)
+      .join('');
 
-  // ===== 3. SCREEN EXPAND MODAL CONTROLLER =====
+    return `
+      <div class="spotlight-card project-card" data-project="${project.id}" tabindex="0">
+        <div class="spotlight-preview">
+          <div class="preview-mockup">
+            <div class="mockup-bar"><span></span><span></span><span></span></div>
+            <div class="mockup-content">
+              <span class="mockup-tag font-mono">${project.category}</span>
+              <p class="mockup-title">${project.title}</p>
+              <p class="mockup-sub text-muted">${project.summary}</p>
+            </div>
+          </div>
+          <span class="expand-indicator" title="Expand Case Study">${svgIcon('expand', { width: 16, height: 16 })}</span>
+        </div>
+        <div class="spotlight-body">
+          <div class="project-tags font-mono">${badges}</div>
+          <p class="spotlight-desc">${project.description}</p>
+          <div class="spotlight-footer">
+            <button type="button" class="btn-text font-mono">VIEW CASE STUDY &rarr;</button>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function renderSummaryCard(project) {
+    const pills = project.tags.slice(0, 2)
+      .map(t => `<span class="tag-badge">${t.toUpperCase()}</span>`)
+      .join('');
+
+    return `
+      <article class="summary-project-card project-card" data-project="${project.id}" tabindex="0">
+        <div class="summary-card-top">
+          <div class="summary-app-icon">${svgIcon(project.icon)}</div>
+          <div class="summary-pill-group font-mono">${pills}</div>
+        </div>
+        <h3 class="summary-card-title">${project.title}</h3>
+        <p class="summary-card-desc">${project.summary}</p>
+        <div class="summary-card-bottom">
+          <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
+        </div>
+      </article>`;
+  }
+
+  function renderFullCard(project) {
+    const tags = project.tags.slice(0, 4).map(t => `<span>${t}</span>`).join('');
+
+    return `
+      <article class="project-card" data-project="${project.id}" tabindex="0">
+        <div class="project-preview">
+          <div class="preview-mockup">
+            <div class="mockup-bar"><span></span><span></span><span></span></div>
+            <div class="mockup-content">
+              <span class="mockup-tag font-mono">${project.category}</span>
+              <p class="mockup-title">${project.title}</p>
+            </div>
+          </div>
+          <span class="expand-indicator" title="Expand Details">${svgIcon('expand', { width: 16, height: 16 })}</span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags font-mono">${tags}</div>
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-desc">${project.summary}</p>
+          <div class="project-footer">
+            <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
+          </div>
+        </div>
+      </article>`;
+  }
+
+  function mountProjectViews() {
+    const spotlightMount = document.getElementById('spotlightContainer');
+    const summaryMount = document.getElementById('summaryProjectGrid');
+    const fullMount = document.getElementById('fullProjectGrid');
+
+    const featured = PROJECTS.find(p => p.featured) || PROJECTS[0];
+
+    if (spotlightMount) spotlightMount.innerHTML = renderSpotlightCard(featured);
+    if (summaryMount) summaryMount.innerHTML = PROJECTS.map(renderSummaryCard).join('');
+    if (fullMount) fullMount.innerHTML = PROJECTS.map(renderFullCard).join('');
+  }
+
+  // ===== 3. SCREEN EXPAND MODAL (uses PROJECTS from data.js) =====
   const projectModal = document.getElementById('projectModal');
   const modalBackdrop = document.getElementById('modalBackdrop');
   const modalClose = document.getElementById('modalClose');
@@ -164,26 +191,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalMockupContent = document.getElementById('modalMockupContent');
 
   function openProjectModal(projectId) {
-    const data = projectsData[projectId];
+    const data = PROJECTS.find(p => p.id === projectId);
     if (!data) return;
 
-    modalMeta.textContent = data.meta;
+    modalMeta.textContent = `${data.category} · ${data.year}`;
     modalTitle.textContent = data.title;
-    modalDesc.textContent = data.desc;
+    modalDesc.textContent = data.description;
 
-    // Render Key Bullets
     modalBullets.innerHTML = data.bullets.map(b => `<li>${b}</li>`).join('');
+    modalTags.innerHTML = data.tags.map(t => `<span class="tag-badge">${t}</span>`).join('');
 
-    // Render Tech Tags
-    modalTags.innerHTML = data.tags.map(t => `<span class="tag-pill">${t}</span>`).join('');
-
-    // Render Links
     modalLinks.innerHTML = `
       <a href="${data.demoUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-dark w-full">Live Demo &rarr;</a>
       <a href="${data.githubUrl}" target="_blank" rel="noopener" class="btn btn-sm btn-light w-full mt-2">Source Code &rarr;</a>
     `;
 
-    // Render Mockup Preview
     modalMockupContent.innerHTML = `
       <div>
         <p class="font-mono text-muted" style="font-size: 11px;">[ Interactive Application Preview ]</p>
@@ -202,7 +224,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.style.overflow = '';
   }
 
-  // Delegated click listener for all project cards (Spotlight, Summary, and Full Page)
   document.addEventListener('click', (e) => {
     const card = e.target.closest('.project-card');
     if (card) {
@@ -222,14 +243,101 @@ document.addEventListener('DOMContentLoaded', () => {
   if (modalClose) modalClose.addEventListener('click', closeProjectModal);
   if (modalBackdrop) modalBackdrop.addEventListener('click', closeProjectModal);
 
-  // Close modal on Escape key
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && projectModal && projectModal.classList.contains('is-active')) {
       closeProjectModal();
     }
   });
 
-  // ===== 4. MOBILE DRAWER MENU =====
+  // ===== 4. CERTIFICATION BOOKSHELF (uses CERTS from data.js) =====
+
+  function renderCertSpine(cert) {
+    const pillsHtml = cert.pills
+      .map(p => `<span class="tag-badge${p.dark ? ' badge-dark' : ''}">${p.text}</span>`)
+      .join('');
+
+    return `
+      <div class="cert-spine${cert.openByDefault ? ' is-open' : ''}" data-cert="${cert.id}" tabindex="0">
+        <div class="cert-spine-label font-mono">${cert.label}</div>
+        <div class="cert-spine-icon${cert.highlight ? ' cert-spine-icon-highlight' : ''}">${svgIcon(cert.icon, { width: 24, height: 24 })}</div>
+        <div class="cert-spine-panel">
+          <div class="cert-panel-info">
+            <div class="cert-pill-row font-mono">${pillsHtml}</div>
+            <h4 class="cert-panel-title">${cert.title}</h4>
+            <p class="cert-panel-issuer text-muted">${cert.issuer}</p>
+            <p class="cert-panel-desc">${cert.desc}</p>
+            <span class="cert-panel-year font-mono">${cert.year}</span>
+          </div>
+          <div class="cert-panel-media">
+            <button type="button" class="cert-preview-zoom" data-full="${cert.img}">
+              <img src="${cert.img}" alt="${cert.title} preview">
+              <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
+            </button>
+            <a href="${cert.pdf}" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
+          </div>
+        </div>
+      </div>`;
+  }
+
+  function mountCertShelf() {
+    const shelf = document.getElementById('certShelf');
+    if (!shelf) return;
+    shelf.innerHTML = CERTS.map(renderCertSpine).join('');
+    wireCertSpines();
+  }
+
+  function wireCertSpines() {
+    const certSpines = document.querySelectorAll('.cert-spine');
+    certSpines.forEach(spine => {
+      spine.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; // let the PDF link open normally
+        if (e.target.closest('.cert-preview-zoom')) return; // let the zoom button handle its own click
+        if (spine.classList.contains('is-open')) return;
+        certSpines.forEach(s => s.classList.remove('is-open'));
+        spine.classList.add('is-open');
+      });
+      spine.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          spine.click();
+        }
+      });
+    });
+
+    // Wire the zoom-to-lightbox buttons (must run after spines are in the DOM)
+    document.querySelectorAll('.cert-preview-zoom').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const img = btn.querySelector('img');
+        certLightboxImg.src = btn.dataset.full;
+        certLightboxImg.alt = img ? img.alt : '';
+        certLightbox.classList.add('is-active');
+      });
+    });
+  }
+
+  // ===== 5. CERTIFICATE PREVIEW LIGHTBOX =====
+  const certLightbox = document.getElementById('certLightbox');
+  const certLightboxImg = document.getElementById('certLightboxImg');
+  const certLightboxClose = document.querySelector('.cert-lightbox-close');
+
+  function closeCertLightbox() {
+    if (!certLightbox) return;
+    certLightbox.classList.remove('is-active');
+    certLightboxImg.src = '';
+  }
+
+  if (certLightboxClose) certLightboxClose.addEventListener('click', closeCertLightbox);
+  if (certLightbox) {
+    certLightbox.addEventListener('click', (e) => {
+      if (e.target === certLightbox) closeCertLightbox();
+    });
+  }
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCertLightbox();
+  });
+
+  // ===== 6. MOBILE DRAWER MENU =====
   const mobileToggle = document.getElementById('mobileToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -239,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== 5. CONTACT FORM SUBMISSION =====
+  // ===== 7. CONTACT FORM SUBMISSION =====
   const contactForm = document.getElementById('contactForm');
   const formStatus = document.getElementById('formStatus');
 
@@ -255,46 +363,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ===== BOOKSHELF CERTIFICATE SPINES =====
-  const certSpines = document.querySelectorAll('.cert-spine');
-  certSpines.forEach(spine => {
-    spine.addEventListener('click', (e) => {
-      if (e.target.closest('a')) return; // let the PDF link open normally
-      if (spine.classList.contains('is-open')) return;
-      certSpines.forEach(s => s.classList.remove('is-open'));
-      spine.classList.add('is-open');
-    });
-    spine.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        spine.click();
-      }
-    });
-  });
-
-    // ===== CERTIFICATE PREVIEW LIGHTBOX =====
-  const certLightbox = document.getElementById('certLightbox');
-  const certLightboxImg = document.getElementById('certLightboxImg');
-  const certLightboxClose = document.querySelector('.cert-lightbox-close');
-
-  document.querySelectorAll('.cert-panel-preview').forEach(btn => {
-    btn.addEventListener('click', () => {
-      certLightboxImg.src = btn.dataset.full;
-      certLightboxImg.alt = btn.querySelector('img').alt;
-      certLightbox.classList.add('is-active');
-    });
-  });
-
-  function closeCertLightbox() {
-    certLightbox.classList.remove('is-active');
-    certLightboxImg.src = '';
-  }
-  certLightboxClose.addEventListener('click', closeCertLightbox);
-  certLightbox.addEventListener('click', (e) => {
-    if (e.target === certLightbox) closeCertLightbox();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeCertLightbox();
-  });
-
+  // ===== INITIAL RENDER =====
+  mountProjectViews();
+  mountCertShelf();
+  renderRoute(getNormalizedPath());
 });

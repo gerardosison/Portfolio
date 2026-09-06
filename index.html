@@ -32,13 +32,13 @@
         <a href="/events" data-link class="nav-link" data-route="/events">Events</a>
         <a href="/contact" data-link class="nav-link" data-route="/contact">Contact Me</a>
       </nav>
-        <div class="topbar-actions">
-          <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+      <div class="topbar-actions">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-    </header>
+    </div>
+  </header>
 
   <!-- Mobile Drawer Menu -->
   <div class="mobile-menu" id="mobileMenu">
@@ -58,13 +58,12 @@
            ROUTE 1: HOME PAGE (/) — SCROLLABLE ONE-PAGER
            ========================================================= -->
       <div id="view-home" class="page-view active">
-        
+
         <!-- 1. HERO -->
         <section class="section hero">
           <div class="hero-left">
             <div class="avatar-wrap">
               <img class="avatar" src="images/profile.png" alt="Gerardo Sison" onerror="this.src='https://api.dicebear.com/9.x/notionists/svg?seed=Gerardo&radius=50&backgroundColor=f3f4f6'">
-              </span>
             </div>
           </div>
 
@@ -77,7 +76,7 @@
 
             <h2 class="role">Software Developer &amp; Student</h2>
             <p class="bio">
-              I build reliable web applications, clean user interfaces, and explore practical AI integrations. 
+              I build reliable web applications, clean user interfaces, and explore practical AI integrations.
               Focused on modern frontend engineering, scalable backend APIs, and continuous technical growth.
             </p>
 
@@ -102,55 +101,24 @@
             </div>
 
             <div class="cta-row">
-              <a href="resume/gerardo-sison-resume.pdf" target="_blank" rel="noopener" class="btn btn-dark">
+              <a href="images/portfolio/portfolio.pdf" target="_blank" rel="noopener" class="btn btn-dark">
                 View Resume
-              </a>
-              <a href="portfolio/portfolio.pdf" target="_blank" rel="noopener" download="Gerardo-Sison-Portfolio.pdf" class="btn btn-outline">
-                Download Portfolio
               </a>
             </div>
           </div>
         </section>
 
-        <!-- 2. FEATURED PROJECT (SPOTLIGHT) -->
+        <!-- 2. FEATURED PROJECT (SPOTLIGHT) — rendered from PROJECTS in data.js -->
         <section class="section">
           <div class="section-head section-head-flex">
             <div>
               <span class="section-tag font-mono">FEATURED PROJECT // SPOTLIGHT</span>
-              <h2 class="section-title">AI Study Assistant Platform</h2>
+              <h2 class="section-title">Featured Project</h2>
             </div>
             <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
           </div>
 
-          <div class="spotlight-card project-card" data-project="project-1" tabindex="0">
-            <div class="spotlight-preview">
-              <div class="preview-mockup">
-                <div class="mockup-bar"><span></span><span></span><span></span></div>
-                <div class="mockup-content">
-                  <span class="mockup-tag font-mono">Full Stack &middot; AI Integration</span>
-                  <p class="mockup-title">AI Study Assistant Platform</p>
-                  <p class="mockup-sub text-muted">Automated lecture summarization, Anki flashcard generation &amp; interactive quizzes.</p>
-                </div>
-              </div>
-              <span class="expand-indicator" title="Expand Case Study">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-              </span>
-            </div>
-            <div class="spotlight-body">
-              <div class="project-tags font-mono">
-                <span class="tag-badge">#1 AI STUDY TOOL</span>
-                <span class="tag-badge">NEXT.JS</span>
-                <span class="tag-badge">GEMINI API</span>
-                <span class="tag-badge">TAILWIND</span>
-              </div>
-              <p class="spotlight-desc">
-                An intelligent academic workspace built for university students to process lecture notes, generate structured concept summaries, and automatically formulate practice recall quizzes.
-              </p>
-              <div class="spotlight-footer">
-                <button type="button" class="btn-text font-mono">VIEW CASE STUDY &rarr;</button>
-              </div>
-            </div>
-          </div>
+          <div id="spotlightContainer"><!-- filled by script.js from PROJECTS --></div>
         </section>
 
         <!-- 3. ABOUT ME -->
@@ -180,34 +148,34 @@
           </div>
           <div class="edu-list">
             <!-- TUP Manila -->
-          <div class="edu-card">
-            <div class="edu-main">
-              <div class="edu-icon-wrap">
-                <img src="images/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
+            <div class="edu-card">
+              <div class="edu-main">
+                <div class="edu-icon-wrap">
+                  <img src="images/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
+                  <p class="edu-degree">Bachelor of Science in Information Technology</p>
+                  <p class="edu-detail text-muted">GPA: 1.45 / 1.0</p>
+                </div>
               </div>
-              <div>
-                <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
-                <p class="edu-degree">Bachelor of Science in Information Technology</p>
-                <p class="edu-detail text-muted">GPA: 1.45 / 1.0</p>
-              </div>
+              <span class="edu-period font-mono">2024 &ndash; Present</span>
             </div>
-            <span class="edu-period font-mono">2024 &ndash; Present</span>
-          </div>
 
-          <!-- Unida Christian Colleges -->
-          <div class="edu-card">
-            <div class="edu-main">
-              <div class="edu-icon-wrap">
-                <img src="images/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
+            <!-- Unida Christian Colleges -->
+            <div class="edu-card">
+              <div class="edu-main">
+                <div class="edu-icon-wrap">
+                  <img src="images/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
+                </div>
+                <div>
+                  <h3 class="edu-institution">Unida Christian Colleges</h3>
+                  <p class="edu-degree">Science, Technology, Engineering, and Mathematics (STEM)</p>
+                  <p class="edu-detail text-muted">With High Honors</p>
+                </div>
               </div>
-              <div>
-                <h3 class="edu-institution">Unida Christian Colleges</h3>
-                <p class="edu-degree">Science, Technology, Engineering, and Mathematics (STEM)</p>
-                <p class="edu-detail text-muted">With High Honors</p>
-              </div>
+              <span class="edu-period font-mono">2022 &ndash; 2024</span>
             </div>
-            <span class="edu-period font-mono">2022 &ndash; 2024</span>
-          </div>
           </div>
         </section>
 
@@ -217,7 +185,7 @@
             <span class="section-tag font-mono">03 // CAREER</span>
             <h2 class="section-title">Experience &amp; Certifications</h2>
           </div>
-          
+
           <h3 class="subheading font-mono">Work History</h3>
           <div class="timeline">
             <div class="timeline-item">
@@ -235,96 +203,14 @@
             </div>
           </div>
 
-          <!-- BOOKSHELF CERTIFICATION SPINES -->
+          <!-- BOOKSHELF CERTIFICATION SPINES — rendered from CERTS in data.js -->
           <div class="mt-8">
             <h3 class="subheading font-mono">Certifications</h3>
-
-            <div class="cert-shelf" id="certShelf">
-              <!-- Spine 1: Postman -->
-              <div class="cert-spine" data-cert="postman" tabindex="0">
-                <div class="cert-spine-label font-mono">Postman Student Expert</div>
-                <div class="cert-spine-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <div class="cert-spine-panel">
-                  <div class="cert-panel-info">
-                    <div class="cert-pill-row font-mono">
-                      <span class="tag-badge badge-dark">POSTMAN</span>
-                      <span class="tag-badge">STUDENT EXPERT</span>
-                    </div>
-                    <h4 class="cert-panel-title">Postman Student Expert</h4>
-                    <p class="cert-panel-issuer text-muted">Postman API Platform</p>
-                    <p class="cert-panel-desc">Certification demonstrating proficiency in API testing, documentation, and collaboration using Postman.</p>
-                    <span class="cert-panel-year font-mono">2025</span>
-                  </div>
-                  <div class="cert-panel-media">
-                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
-                      <img src="images/certificates/acm.png" alt="Postman Student Expert Certificate preview">
-                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
-                    </button>
-                    <a href="images/certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Spine 2: ACM TechSprint -->
-              <div class="cert-spine" data-cert="acm" tabindex="0">
-                <div class="cert-spine-label font-mono">ACM TechSprint Certificate</div>
-                <div class="cert-spine-icon cert-spine-icon-highlight">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-                </div>
-                <div class="cert-spine-panel">
-                  <div class="cert-panel-info">
-                    <div class="cert-pill-row font-mono">
-                      <span class="tag-badge badge-dark">ACM TECHSPRINT</span>
-                      <span class="tag-badge">ASTERIA 2025</span>
-                    </div>
-                    <h4 class="cert-panel-title">ACM TechSprint Certificate</h4>
-                    <p class="cert-panel-issuer text-muted">Far Eastern University &ndash; Technology</p>
-                    <p class="cert-panel-desc">Certificate of achievement and participation in the ACM TechSprint: Asteria Hackathon.</p>
-                    <span class="cert-panel-year font-mono">2025</span>
-                  </div>
-                  <div class="cert-panel-media">
-                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
-                      <img src="images/certificates/acm.png" alt="ACM TechSprint Certificate preview">
-                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
-                    </button>
-                    <a href="images/certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Spine 3: Meta Front-End -->
-              <div class="cert-spine is-open" data-cert="meta" tabindex="0">
-                <div class="cert-spine-label font-mono">Meta Front-End Developer</div>
-                <div class="cert-spine-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                </div>
-                <div class="cert-spine-panel">
-                  <div class="cert-panel-info">
-                    <div class="cert-pill-row font-mono">
-                      <span class="tag-badge">COURSERA</span>
-                      <span class="tag-badge">META</span>
-                    </div>
-                    <h4 class="cert-panel-title">Meta Front-End Developer</h4>
-                    <p class="cert-panel-issuer text-muted">Coursera / Meta</p>
-                    <p class="cert-panel-desc">Professional certification covering React, responsive design, UI testing, and version control.</p>
-                    <span class="cert-panel-year font-mono">2025</span>
-                  </div>
-                  <div class="cert-panel-media">
-                    <button type="button" class="cert-preview-zoom" data-full="images/certificates/acm.png">
-                      <img src="images/certificates/acm.png" alt="Meta Front-End Developer Certificate preview">
-                      <span class="cert-preview-hint font-mono">CLICK TO ENLARGE</span>
-                    </button>
-                    <a href="certificates/Certificate_ACM.pdf" target="_blank" rel="noopener" class="cert-btn-link cert-media-download font-mono">DOWNLOAD PDF &rarr;</a>
-                  </div>
-                </div>
-              </div>
-            </div> 
+            <div class="cert-shelf" id="certShelf"><!-- filled by script.js from CERTS --></div>
           </div>
         </section>
 
-         <!-- 7. PROJECTS — SUMMARY VIEW -->
+        <!-- 6. PROJECTS — SUMMARY VIEW (rendered from PROJECTS in data.js) -->
         <section class="section">
           <div class="section-head section-head-flex">
             <div>
@@ -334,64 +220,10 @@
             <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
           </div>
 
-          <div class="summary-project-grid">
-            <!-- Summary Card 1 -->
-            <article class="summary-project-card project-card" data-project="project-1" tabindex="0">
-              <div class="summary-card-top">
-                <div class="summary-app-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
-                </div>
-                <div class="summary-pill-group font-mono">
-                  <span class="tag-badge">AI INTEGRATION</span>
-                  <span class="tag-badge">NEXT.JS</span>
-                </div>
-              </div>
-              <h3 class="summary-card-title">AI Study Assistant</h3>
-              <p class="summary-card-desc">Intelligent student workspace for lecture parsing, summaries &amp; flashcard generation.</p>
-              <div class="summary-card-bottom">
-                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
-              </div>
-            </article>
-
-            <!-- Summary Card 2 -->
-            <article class="summary-project-card project-card" data-project="project-2" tabindex="0">
-              <div class="summary-card-top">
-                <div class="summary-app-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M15 3v18M3 9h18M3 15h18"/></svg>
-                </div>
-                <div class="summary-pill-group font-mono">
-                  <span class="tag-badge">DEV TOOL</span>
-                  <span class="tag-badge">TYPESCRIPT</span>
-                </div>
-              </div>
-              <h3 class="summary-card-title">DevFlow Task Manager</h3>
-              <p class="summary-card-desc">Zero-latency Kanban sprint planner designed specifically for indie hackers &amp; dev teams.</p>
-              <div class="summary-card-bottom">
-                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
-              </div>
-            </article>
-
-            <!-- Summary Card 3 -->
-            <article class="summary-project-card project-card" data-project="project-3" tabindex="0">
-              <div class="summary-card-top">
-                <div class="summary-app-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                </div>
-                <div class="summary-pill-group font-mono">
-                  <span class="tag-badge">COMMERCE</span>
-                  <span class="tag-badge">STRIPE</span>
-                </div>
-              </div>
-              <h3 class="summary-card-title">Apparel Storefront</h3>
-              <p class="summary-card-desc">Headless e-commerce platform with real-time cart persistence &amp; Stripe Checkout integration.</p>
-              <div class="summary-card-bottom">
-                <span class="btn-text font-mono">VIEW DETAILS &rarr;</span>
-              </div>
-            </article>
-          </div>
+          <div class="summary-project-grid" id="summaryProjectGrid"><!-- filled by script.js from PROJECTS --></div>
         </section>
 
-        <!-- 6. TOOLS & TECHNOLOGIES -->
+        <!-- 7. TOOLS & TECHNOLOGIES -->
         <section class="section">
           <div class="section-head">
             <span class="section-tag font-mono">05 // TECH STACK</span>
@@ -504,20 +336,11 @@
           </p>
 
           <div class="contact-channels-grid">
-            <a href="mailto:you@example.com" class="channel-card">
+            <a href="mailto:gerardosison321@gmail.com" class="channel-card">
               <div class="channel-info">
                 <span class="channel-type font-mono">DIRECT EMAIL</span>
-                <h3 class="channel-title">you@example.com</h3>
+                <h3 class="channel-title">gerardosison321@gmail.com</h3>
                 <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
-              </div>
-              <span class="channel-chevron font-mono">&rarr;</span>
-            </a>
-
-            <a href="https://calendly.com" target="_blank" rel="noopener" class="channel-card">
-              <div class="channel-info">
-                <span class="channel-type font-mono">SCHEDULE MEETING</span>
-                <h3 class="channel-title">Schedule a 15-min Call</h3>
-                <p class="channel-desc text-muted">Pick a time that works best to discuss opportunities.</p>
               </div>
               <span class="channel-chevron font-mono">&rarr;</span>
             </a>
@@ -525,6 +348,7 @@
         </section>
 
       </div>
+      <!-- /view-home -->
 
       <!-- =========================================================
            ROUTE 2: PROJECTS PAGE (/projects) — FULL DETAIL VIEW
@@ -542,93 +366,7 @@
             A comprehensive showcase of production applications, AI integrations, and developer tools. Click any card to expand full case study.
           </p>
 
-          <div class="project-grid mt-6">
-            <!-- Project 1 -->
-            <article class="project-card" data-project="project-1" tabindex="0">
-              <div class="project-preview">
-                <div class="preview-mockup">
-                  <div class="mockup-bar"><span></span><span></span><span></span></div>
-                  <div class="mockup-content">
-                    <span class="mockup-tag font-mono">Full Stack App</span>
-                    <p class="mockup-title">AI Study Assistant Platform</p>
-                  </div>
-                </div>
-                <span class="expand-indicator" title="Expand Details">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                </span>
-              </div>
-              <div class="project-body">
-                <div class="project-tags font-mono">
-                  <span>React</span>
-                  <span>Next.js</span>
-                  <span>Gemini API</span>
-                  <span>Tailwind</span>
-                </div>
-                <h3 class="project-title">AI Study Assistant Platform</h3>
-                <p class="project-desc">An intelligent student workspace for generating summaries, flashcards, and quizzes from lecture notes.</p>
-                <div class="project-footer">
-                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 2 -->
-            <article class="project-card" data-project="project-2" tabindex="0">
-              <div class="project-preview">
-                <div class="preview-mockup">
-                  <div class="mockup-bar"><span></span><span></span><span></span></div>
-                  <div class="mockup-content">
-                    <span class="mockup-tag font-mono">Web Application</span>
-                    <p class="mockup-title">DevFlow Task Management</p>
-                  </div>
-                </div>
-                <span class="expand-indicator" title="Expand Details">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                </span>
-              </div>
-              <div class="project-body">
-                <div class="project-tags font-mono">
-                  <span>TypeScript</span>
-                  <span>Node.js</span>
-                  <span>PostgreSQL</span>
-                  <span>Prisma</span>
-                </div>
-                <h3 class="project-title">DevFlow Task Management</h3>
-                <p class="project-desc">Minimalist Kanban and sprint planner designed specifically for indie hackers and small dev teams.</p>
-                <div class="project-footer">
-                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
-                </div>
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="project-card" data-project="project-3" tabindex="0">
-              <div class="project-preview">
-                <div class="preview-mockup">
-                  <div class="mockup-bar"><span></span><span></span><span></span></div>
-                  <div class="mockup-content">
-                    <span class="mockup-tag font-mono">E-Commerce UI</span>
-                    <p class="mockup-title">Minimalist Apparel Storefront</p>
-                  </div>
-                </div>
-                <span class="expand-indicator" title="Expand Details">
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                </span>
-              </div>
-              <div class="project-body">
-                <div class="project-tags font-mono">
-                  <span>Next.js</span>
-                  <span>Stripe</span>
-                  <span>Tailwind CSS</span>
-                </div>
-                <h3 class="project-title">Minimalist Apparel Storefront</h3>
-                <p class="project-desc">Fast, headless e-commerce store with real-time cart persistence, Stripe checkout, and clean micro-interactions.</p>
-                <div class="project-footer">
-                  <span class="btn-text font-mono">EXPAND DETAILS &rarr;</span>
-                </div>
-              </div>
-            </article>
-          </div>
+          <div class="project-grid mt-6" id="fullProjectGrid"><!-- filled by script.js from PROJECTS --></div>
         </section>
       </div>
 
@@ -693,10 +431,10 @@
           </p>
 
           <div class="contact-channels-grid mt-6">
-            <a href="mailto:you@example.com" class="channel-card">
+            <a href="mailto:gerardosison321@gmail.com" class="channel-card">
               <div class="channel-info">
                 <span class="channel-type font-mono">DIRECT EMAIL</span>
-                <h3 class="channel-title">you@example.com</h3>
+                <h3 class="channel-title">gerardosison321@gmail.com</h3>
                 <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
               </div>
               <span class="channel-chevron font-mono">&rarr;</span>
@@ -743,9 +481,8 @@
 
       <!-- ===== FOOTER ===== -->
       <footer class="footer">
-        <div class="footer-inner">
-          <p class="font-mono text-muted">&copy; 2026 Gerardo Sison &middot; Built with clean semantic code.</p>
-          <a href="/contact" data-link class="back-top font-mono">Get in Touch &rarr;</a>
+        <div class="footer-inner-italic">
+          <p class="font-mono text-muted">Everything happens for a Reason.</p>
         </div>
       </footer>
 
@@ -759,7 +496,7 @@
       <button class="modal-close" id="modalClose" aria-label="Close modal">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
-      
+
       <div class="modal-header">
         <div class="modal-meta font-mono" id="modalMeta">Full-Stack Application &middot; 2025</div>
         <h2 class="modal-title" id="modalTitle">Project Title</h2>
@@ -796,6 +533,13 @@
     </div>
   </div>
 
+  <!-- ===== CERTIFICATE PREVIEW LIGHTBOX ===== -->
+  <div class="cert-lightbox" id="certLightbox">
+    <button class="cert-lightbox-close" aria-label="Close preview">&times;</button>
+    <img id="certLightboxImg" src="" alt="">
+  </div>
+
+  <script src="js/data.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

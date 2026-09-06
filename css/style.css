@@ -554,6 +554,12 @@ img {
   border: 1px solid var(--border);
 }
 
+.tag-badge.badge-dark {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+}
+
 /* ===== 7. ABOUT NARRATIVE & EDUCATION ===== */
 .about-narrative {
   display: flex;
@@ -1177,6 +1183,15 @@ img {
   align-items: center;
   font-size: 12.5px;
 }
+
+.footer-inner-italic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  font-style: italic;
+}
+
 
 .back-top {
   color: var(--muted);
