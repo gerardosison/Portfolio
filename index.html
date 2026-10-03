@@ -2,496 +2,498 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Gerardo Sison — Software Developer</title>
   <meta name="description" content="Portfolio of Gerardo Sison — Student Software Engineer">
 
-  <!-- Google Fonts: Inter (Clean UI) & JetBrains Mono (Technical / Dates) -->
+  <script>
+  (function () {
+    try {
+      var t = localStorage.getItem('theme');
+      if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) {}
+  })();
+  </script>
+
+  <!-- ===== EVENT PHOTO VIEWER ===== -->
+  <div class="cert-lightbox" id="photoLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Event photos">
+    <button type="button" class="cert-lightbox-close" id="plClose" aria-label="Close preview">&times;</button>
+    <button type="button" class="lb-nav lb-prev" id="plPrev" aria-label="Previous photo">&lsaquo;</button>
+    <img id="plImg" src="" alt="">
+    <button type="button" class="lb-nav lb-next" id="plNext" aria-label="Next photo">&rsaquo;</button>
+    <p class="lb-count" id="plCount"></p>
+  </div>
+
+  <!-- Single font family across the whole site: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/profile.png">
+  <link rel="apple-touch-icon" href="images/profile.png">
 </head>
 <body>
 
-  <!-- Subtle Halftone / Dot Grid Background -->
-  <div class="bg-dots" aria-hidden="true"></div>
-
-  <!-- ===== PERSISTENT TOPBAR / NAVIGATION ===== -->
-  <header class="topbar">
+  <!-- ===== FLOATING GLASS NAVBAR ===== -->
+  <header class="topbar" id="topbar">
     <div class="topbar-inner">
-      <a href="/" data-link class="logo">
-        <span class="logo-text">gerardo</span>
-      </a>
+      <a href="#hero" class="logo" aria-label="Gerardo Sison — back to top">gerardo</a>
 
-      <!-- 4 Core Navigation Routes -->
-      <nav class="topnav" id="topnav">
-        <a href="/" data-link class="nav-link active" data-route="/">Home</a>
-        <a href="/projects" data-link class="nav-link" data-route="/projects">Projects</a>
-        <a href="/events" data-link class="nav-link" data-route="/events">Events</a>
-        <a href="/contact" data-link class="nav-link" data-route="/contact">Contact Me</a>
+      <nav class="topnav" id="topnav" aria-label="Primary">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#events" class="nav-link">Events</a>
       </nav>
+
       <div class="topbar-actions">
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <a href="#contact" class="btn-nav-contact">Contact</a>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
+  <!-- Mobile drawer -->
   <div class="mobile-menu" id="mobileMenu">
-    <nav class="mobile-nav">
-      <a href="/" data-link class="mobile-link" data-route="/">Home</a>
-      <a href="/projects" data-link class="mobile-link" data-route="/projects">Projects</a>
-      <a href="/events" data-link class="mobile-link" data-route="/events">Events</a>
-      <a href="/contact" data-link class="mobile-link" data-route="/contact">Contact Me</a>
+    <nav class="mobile-nav" aria-label="Mobile">
+      <a href="#hero" class="mobile-link">Home</a>
+      <a href="#about" class="mobile-link">About Me</a>
+      <a href="#experience" class="mobile-link">Experience</a>
+      <a href="#projects" class="mobile-link">Projects</a>
+      <a href="#events" class="mobile-link">Events</a>
+      <a href="#contact" class="mobile-link">Contact</a>
     </nav>
   </div>
 
-  <!-- ===== DYNAMIC MAIN VIEW CONTAINER ===== -->
+  <!-- ===== 1. HERO (full width, always dark) ===== -->
+  <section class="landing" id="hero">
+    <div class="landing-inner">
+      <div class="landing-copy">
+        <h1 class="landing-title">
+          <span class="landing-hello">Hello! I'm</span>
+          <span class="landing-name">Gerardo Sison</span>
+        </h1>
+        <p class="landing-role"><strong>Student Software Engineer</strong></p>
+        <p class="landing-sub">
+          A <strong>BS Information Technology</strong> student at <strong>TUP - Manila</strong>. 
+          I build reliable web applications, clean user interfaces, and explore practical AI integrations. 
+          Focused on modern frontend engineering, scalable backend APIs, and continuous technical growth.
+        </p>
+
+        <div class="landing-actions">
+          <a href="images/portfolio/portfolio.pdf" target="_blank" rel="noopener" class="landing-btn">View Resume</a>
+        </div>
+
+        <div class="landing-socials">
+          <a href="https://github.com/gerardosison" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/gerardo-sison-309959381" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.15C0 .52.53 0 1.19 0h13.62C15.47 0 16 .52 16 1.15v13.7c0 .64-.53 1.15-1.19 1.15H1.19C.53 16 0 15.49 0 14.85V1.15ZM4.75 13.4V6.16H2.4v7.24h2.35Zm-1.17-8.22c.82 0 1.33-.54 1.33-1.22-.01-.7-.51-1.22-1.31-1.22-.8 0-1.33.53-1.33 1.22 0 .68.51 1.22 1.3 1.22h.01Zm4.53 8.22v-4.04c0-.22.02-.43.08-.59.18-.43.58-.88 1.26-.88.89 0 1.24.68 1.24 1.67v3.84h2.35V9.4c0-2.17-1.16-3.18-2.71-3.18-1.25 0-1.8.7-2.11 1.18h.02v-1H6.06c.03.66 0 7 0 7h2.05Z"/></svg>
+          </a>
+          <a href="https://web.facebook.com/gerardo.sison.1" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.16 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.04 1.79-4.72 4.55-4.72 1.32 0 2.7.24 2.7.24v2.99h-1.52c-1.5 0-1.97.94-1.97 1.9v2.27h3.35l-.54 3.49h-2.81V24C19.61 23.16 24 18.1 24 12.07Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/gerardosison01/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.52.19.96.45 1.39.88.43.43.69.87.88 1.39.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.19.52-.45.96-.88 1.39-.43.43-.87.69-1.39.88-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.67 3.67 0 0 1-1.39-.88 3.67 3.67 0 0 1-.88-1.39c-.16-.42-.36-1.05-.41-2.22C2.01 15.58 2 15.2 2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.19-.52.45-.96.88-1.39.43-.43.87-.69 1.39-.88.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.36.13-.62.29-.9.57-.28.28-.44.54-.57.9-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.13.36.29.62.57.9.28.28.54.44.9.57.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.36-.13.62-.29.9-.57.28-.28.44-.54.57-.9.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17-.13-.36-.29-.62-.57-.9-.28-.28-.54-.44-.9-.57-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.38a4.48 4.48 0 1 1 0 8.96 4.48 4.48 0 0 1 0-8.96Zm0 7.4a2.92 2.92 0 1 0 0-5.84 2.92 2.92 0 0 0 0 5.84Zm5.7-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="landing-portrait">
+        <img src="images/profile-cutout.png" alt="Portrait of Gerardo Sison"
+             onerror="this.onerror=null;this.src='images/profile.png'">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== MAIN CONTENT ===== -->
   <main class="content">
     <div class="content-inner">
 
-      <!-- =========================================================
-           ROUTE 1: HOME PAGE (/) — SCROLLABLE ONE-PAGER
-           ========================================================= -->
-      <div id="view-home" class="page-view active">
+      <!-- 2. ABOUT -->
+      <section class="section" id="about">
+        <div class="section-head">
+          <h2 class="section-title">About Me</h2>
+        </div>
+        <div class="about-grid">
 
-        <!-- 1. HERO -->
-        <section class="section hero">
-          <div class="hero-left">
-            <div class="avatar-wrap">
-              <img class="avatar" src="images/profile.png" alt="Gerardo Sison" onerror="this.src='https://api.dicebear.com/9.x/notionists/svg?seed=Gerardo&radius=50&backgroundColor=f3f4f6'">
-            </div>
+          <!-- 3 photos, fanned like a card stack. Put your photos in images/about/ -->
+          <div class="about-photos">
+            <figure class="about-photo about-photo-left">
+              <img src="images/about/about-2.jpg" alt="Gerardo Sison, photo 1" loading="lazy"
+                   onerror="this.onerror=null;this.src='images/profile.png'">
+            </figure>
+            <figure class="about-photo about-photo-right">
+              <img src="images/about/about-3.jpg" alt="Gerardo Sison, photo 3" loading="lazy"
+                   onerror="this.onerror=null;this.src='images/profile.png'">
+            </figure>
+            <figure class="about-photo about-photo-center">
+              <img src="images/about/about-1.jpg" alt="Gerardo Sison, photo 2" loading="lazy"
+                   onerror="this.onerror=null;this.src='images/profile.png'">
+            </figure>
           </div>
 
-          <div class="hero-text">
-            <div class="hero-header">
-              <span class="hero-greeting font-mono">Hello! I am</span>
-              <h1>Gerardo Sison</h1>
-              <p class="location font-mono">Cavite, Philippines</p>
-            </div>
-
-            <h2 class="role">Student Software Engineer</h2>
-            <p class="bio">
-              I build reliable web applications, clean user interfaces, and explore practical AI integrations.
-              Focused on modern frontend engineering, scalable backend APIs, and continuous technical growth.
-            </p>
-
-            <!-- Social Links -->
-            <div class="social-row">
-              <a href="https://github.com/gerardosison" target="_blank" rel="noopener" aria-label="GitHub" class="social-btn">
-                <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-                <span>GitHub</span>
-              </a>
-              <a href="https://www.linkedin.com/in/gerardo-sison-309959381" target="_blank" rel="noopener" aria-label="LinkedIn" class="social-btn">
-                <svg viewBox="0 0 16 16" width="15" height="15" fill="currentColor"><path d="M0 1.15C0 .52.53 0 1.19 0h13.62C15.47 0 16 .52 16 1.15v13.7c0 .64-.53 1.15-1.19 1.15H1.19C.53 16 0 15.49 0 14.85V1.15ZM4.75 13.4V6.16H2.4v7.24h2.35Zm-1.17-8.22c.82 0 1.33-.54 1.33-1.22-.01-.7-.51-1.22-1.31-1.22-.8 0-1.33.53-1.33 1.22 0 .68.51 1.22 1.3 1.22h.01Zm4.53 8.22v-4.04c0-.22.02-.43.08-.59.18-.43.58-.88 1.26-.88.89 0 1.24.68 1.24 1.67v3.84h2.35V9.4c0-2.17-1.16-3.18-2.71-3.18-1.25 0-1.8.7-2.11 1.18h.02v-1H6.06c.03.66 0 7 0 7h2.05Z"/></svg>
-                <span>LinkedIn</span>
-              </a>
-              <a href="https://web.facebook.com/gerardo.sison.1" target="_blank" rel="noopener" aria-label="Facebook" class="social-btn">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.16 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.04 1.79-4.72 4.55-4.72 1.32 0 2.7.24 2.7.24v2.99h-1.52c-1.5 0-1.97.94-1.97 1.9v2.27h3.35l-.54 3.49h-2.81V24C19.61 23.16 24 18.1 24 12.07Z"/></svg>
-                <span>Facebook</span>
-              </a>
-              <a href="https://www.instagram.com/gerardosison01/" target="_blank" rel="noopener" aria-label="Instagram" class="social-btn">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.52.19.96.45 1.39.88.43.43.69.87.88 1.39.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.19.52-.45.96-.88 1.39-.43.43-.87.69-1.39.88-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.67 3.67 0 0 1-1.39-.88 3.67 3.67 0 0 1-.88-1.39c-.16-.42-.36-1.05-.41-2.22C2.01 15.58 2 15.2 2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.19-.52.45-.96.88-1.39.43-.43.87-.69 1.39-.88.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.36.13-.62.29-.9.57-.28.28-.44.54-.57.9-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.13.36.29.62.57.9.28.28.54.44.9.57.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.36-.13.62-.29.9-.57.28-.28.44-.54.57-.9.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17-.13-.36-.29-.62-.57-.9-.28-.28-.54-.44-.9-.57-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.38a4.48 4.48 0 1 1 0 8.96 4.48 4.48 0 0 1 0-8.96Zm0 7.4a2.92 2.92 0 1 0 0-5.84 2.92 2.92 0 0 0 0 5.84Zm5.7-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
-                <span>Instagram</span>
-              </a>
-            </div>
-
-            <div class="cta-row">
-              <a href="images/portfolio/portfolio.pdf" target="_blank" rel="noopener" class="btn btn-dark">
-                View Resume
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- 2. FEATURED PROJECT (SPOTLIGHT) — rendered from PROJECTS in data.js -->
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">FEATURED PROJECT // SPOTLIGHT</span>
-              <h2 class="section-title">Featured Project</h2>
-            </div>
-            <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
-          </div>
-
-          <div id="spotlightContainer"><!-- filled by script.js from PROJECTS --></div>
-        </section>
-
-        <!-- 3. ABOUT ME -->
-        <section class="section">
-          <div class="section-head">
-            <span class="section-tag font-mono">01 // PROFILE</span>
-            <h2 class="section-title">About Me</h2>
-          </div>
           <div class="about-narrative">
             <p>
-              I am a Bachelor of Science in Information Technology student at the Technological University of the Philippines Manila. I enjoy exploring different areas of technology, including web and app development, IoT, and networking.
+              I am a Bachelor of Science in Information Technology student at the Technological University of the Philippines Manila. I enjoy exploring diverse areas of software engineering, including responsive web design, robust backends, IoT, and modern networking.
             </p>
             <p>
-              For me, learning becomes meaningful when I can put what I learn into practice. I learn best by trying things out, experimenting, and figuring out how things work through hands-on experience and trial and error.
+              For me, learning becomes meaningful when I can put concepts into practice. I learn best through hands-on experimentation, debugging real-world problems, and refining systems through methodical trial and improvement.
             </p>
             <p>
-              I also enjoy collaborating with other developers because it gives me the opportunity to learn from others, understand concepts more deeply, and build meaningful connections. Outside of software development, I like tinkering with hardware and wiring, joining hackathons, attending developer meetups, and helping peers who are just starting their journey in technology.
+              I also value collaborating with other developers. Working in teams provides opportunities to learn diverse viewpoints, grasp complex architectures faster, and build lasting professional connections. Outside of software development, I like tinkering with hardware and wiring, joining tech community events, and supporting fellow students in their tech journey.
             </p>
           </div>
-        </section>
 
-        <!-- 4. EDUCATION -->
-        <section class="section">
-          <div class="section-head">
-            <span class="section-tag font-mono">02 // ACADEMICS</span>
-            <h2 class="section-title">Education</h2>
-          </div>
-          <div class="edu-list">
-            <!-- TUP Manila -->
-            <div class="edu-card">
-              <div class="edu-main">
-                <div class="edu-icon-wrap">
-                  <img src="images/school_logo/tup.png" alt="TUP Manila Logo" class="edu-logo-img" onerror="this.style.display='none'">
-                </div>
-                <div>
-                  <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
-                  <p class="edu-degree">Bachelor of Science in Information Technology</p>
-                  <p class="edu-detail text-muted">GWA: 1.46 / 1.0</p>
-                </div>
+        </div>
+      </section>
+
+      <!-- 3. EDUCATION -->
+      <section class="section" id="education">
+        <div class="section-head">
+          <h2 class="section-title">Education</h2>
+        </div>
+        <div class="edu-list">
+          <div class="edu-card">
+            <div class="edu-main">
+              <div class="edu-icon-wrap">
+                <img src="images/school_logo/tup.png" alt="TUP Manila logo" class="edu-logo-img" onerror="this.style.display='none'">
               </div>
-              <span class="edu-period font-mono">2024 &ndash; Present</span>
-            </div>
-
-            <!-- Unida Christian Colleges -->
-            <div class="edu-card">
-              <div class="edu-main">
-                <div class="edu-icon-wrap">
-                  <img src="images/school_logo/unida.png" alt="Unida Christian Colleges Logo" class="edu-logo-img" onerror="this.style.display='none'">
-                </div>
-                <div>
-                  <h3 class="edu-institution">Unida Christian Colleges</h3>
-                  <p class="edu-degree">Science, Technology, Engineering, and Mathematics (STEM)</p>
-                  <p class="edu-detail text-muted">With High Honors</p>
-                </div>
-              </div>
-              <span class="edu-period font-mono">2022 &ndash; 2024</span>
-            </div>
-          </div>
-        </section>
-
-        <!-- 5. EXPERIENCE & CERTIFICATIONS -->
-        <section class="section">
-          <div class="section-head">
-            <span class="section-tag font-mono">03 // CAREER</span>
-            <h2 class="section-title">Experience &amp; Certifications</h2>
-          </div>
-
-          <h3 class="subheading font-mono">Work History</h3>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="timeline-date font-mono">2025 &mdash; Present</div>
-              <div class="timeline-body">
-                <div class="timeline-title-row">
-                  <h4 class="timeline-title">Quality Assurance Analyst</h4>
-                </div>
-                <p class="timeline-company">One Plus Solutions, Inc</p>
-                <ul class="timeline-bullets">
-                  <li>Executed detailed functional testing across core systems to identify, document, and isolate critical software errors.</li>
-                  <li>Logged and tracked technical bugs in issue-tracking systems to help developers streamline fixes and improve system reliability.</li>
-                </ul>
+              <div>
+                <h3 class="edu-institution">Technological University of the Philippines - Manila</h3>
+                <p class="edu-degree">Bachelor of Science in Information Technology</p>
+                <p class="edu-detail">GWA: 1.46 / 1.0</p>
               </div>
             </div>
+            <span class="edu-period">2024 &ndash; Present</span>
           </div>
 
-          <!-- BOOKSHELF CERTIFICATION SPINES — rendered from CERTS in data.js -->
-          <div class="mt-8">
-            <div class="section-head-flex" style="margin-bottom: 20px;">
-              <h3 class="subheading font-mono" style="margin-bottom: 0;">Certifications</h3>
-              <a href="/certifications" data-link class="section-nav-link font-mono">VIEW ALL &rarr;</a>
-            </div>
-            <div class="cert-list" id="certShelf"><!-- filled by script.js from CERTS --></div>
-          </div>
-        </section>
-
-        <!-- 6. PROJECTS — SUMMARY VIEW (rendered from PROJECTS in data.js) -->
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">04 // WORK</span>
-              <h2 class="section-title">Selected Projects</h2>
-            </div>
-            <a href="/projects" data-link class="section-nav-link font-mono">ALL PROJECTS &rarr;</a>
-          </div>
-
-          <div class="summary-project-grid" id="summaryProjectGrid"><!-- filled by script.js from PROJECTS --></div>
-        </section>
-
-        <!-- 7. TOOLS & TECHNOLOGIES -->
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">05 // TECH STACK</span>
-              <h2 class="section-title">Tools &amp; Technologies</h2>
-              <p class="section-intro text-muted">
-                A comprehensive toolkit of languages, frameworks, cloud services, and tools I use to build software.
-              </p>
-            </div>
-            <button type="button" class="section-nav-link font-mono" id="techViewToggle">VIEW ALL &rarr;</button>
-          </div>
-
-          <div class="tech-stack-container" id="techStackContainer"><!-- filled by script.js from TECH_STACK --></div>
-
-          <p class="tech-footer-note font-mono text-muted">
-            Note: I am not an expert in all of these, but I am continuously learning and expanding my stack.
-          </p>
-        </section>
-
-        <!-- 8. CONTACT ("LET'S WORK TOGETHER") -->
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">06 // GET IN TOUCH</span>
-              <h2 class="section-title">Let's work together</h2>
-            </div>
-            <a href="/contact" data-link class="section-nav-link font-mono">CONTACT PAGE &rarr;</a>
-          </div>
-
-          <p class="section-intro text-muted" style="margin-bottom: 24px;">
-            Currently open to freelance opportunities, internships, and technical collaborations. Have an idea or project in mind? Reach out anytime.
-          </p>
-
-          <div class="contact-channels-grid">
-            <a href="mailto:gerardosison321@gmail.com" class="channel-card">
-              <div class="channel-info">
-                <span class="channel-type font-mono">DIRECT EMAIL</span>
-                <h3 class="channel-title">gerardosison321@gmail.com</h3>
-                <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
+          <div class="edu-card">
+            <div class="edu-main">
+              <div class="edu-icon-wrap">
+                <img src="images/school_logo/unida.png" alt="Unida Christian Colleges logo" class="edu-logo-img" onerror="this.style.display='none'">
               </div>
-              <span class="channel-chevron font-mono">&rarr;</span>
-            </a>
-          </div>
-        </section>
-      </div>
-
-      <!-- =========================================================
-           ROUTE 2: PROJECTS PAGE (/projects) — FULL DETAIL VIEW
-           ========================================================= -->
-      <div id="view-projects" class="page-view">
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">PORTFOLIO</span>
-              <h1 class="section-title">All Featured Projects</h1>
+              <div>
+                <h3 class="edu-institution">Unida Christian Colleges</h3>
+                <p class="edu-degree">Science, Technology, Engineering, and Mathematics (STEM)</p>
+                <p class="edu-detail">With High Honors</p>
+              </div>
             </div>
-            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+            <span class="edu-period">2022 &ndash; 2024</span>
           </div>
-          <p class="section-intro text-muted">
-            A comprehensive showcase of production applications, AI integrations, and developer tools. Click any card to expand full case study.
-          </p>
+        </div>
+      </section>
 
-          <div class="project-grid mt-6" id="fullProjectGrid"><!-- filled by script.js from PROJECTS --></div>
-        </section>
-      </div>
+      <!-- 4. EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-head section-head-flex">
+          <h2 class="section-title">Experience &amp; Leadership</h2>
+          <a href="#/experience" class="section-nav-btn">View details</a>
+        </div>
+        <div class="timeline" id="experienceList"></div>
+      </section>
 
-      <!-- =========================================================
-           ROUTE 5: CERTIFICATIONS PAGE (/certifications)
-           ========================================================= -->
-      <div id="view-certifications" class="page-view">
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">CREDENTIALS</span>
-              <h1 class="section-title">All Certifications</h1>
-            </div>
-            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+      <!-- 5. PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-head section-head-flex">
+          <div>
+            <h2 class="section-title">Projects</h2>
+            <p class="section-intro">A collection of systems, digital projects, and technical work I've built.</p>
           </div>
-          <p class="section-intro text-muted">
-            A complete record of certifications, courses, and credentials I've earned.
-          </p>
+          <a href="#/projects" class="section-nav-btn">View all</a>
+        </div>
 
-          <div class="cert-list mt-6" id="fullCertList"><!-- filled by script.js from CERTS --></div>
-        </section>
-      </div>
+        <div class="gallery" id="projectGallery">
+          <div class="gallery-stage" id="galleryStage"></div>
 
-      <!-- =========================================================
-           ROUTE 3: EVENTS PAGE (/events)
-           ========================================================= -->
-      <div id="view-events" class="page-view">
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">COMMUNITY</span>
-              <h1 class="section-title">Events &amp; Hackathons</h1>
-            </div>
-            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
+          <div class="gallery-info" id="galleryInfo">
+            <div class="gallery-tags" id="galleryTags"></div>
+            <h3 class="gallery-title" id="galleryTitle"></h3>
+            <p class="gallery-desc" id="galleryDesc"></p>
+            <button type="button" class="gallery-link" id="galleryOpen"></button>
           </div>
-          <p class="section-intro text-muted">
-            Hackathons, speaking engagements, and tech community workshops I have participated in.
-          </p>
 
-          <div class="timeline mt-6">
-            <div class="timeline-item">
-              <div class="timeline-date font-mono">Mar 2026</div>
-              <div class="timeline-body">
-                <div class="timeline-title-row">
-                  <h4 class="timeline-title">Google Study Jam 2026: Dream, Design, Develop!</h4>
-                  <span class="badge">Finance Auditor</span>
+          <div class="gallery-controls" id="galleryControls">
+            <button type="button" class="gallery-arrow" id="galleryPrev" aria-label="Previous project">&lsaquo;</button>
+            <div class="gallery-dots" id="galleryDots"></div>
+            <button type="button" class="gallery-arrow" id="galleryNext" aria-label="Next project">&rsaquo;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. TOOLS & TECHNOLOGIES -->
+      <section class="section" id="tools">
+        <div class="section-head section-head-flex">
+          <div>
+            <h2 class="section-title">Tools &amp; Technologies</h2>
+            <p class="section-intro">Languages, frameworks, developer tools, and environments I use to build modern digital products.</p>
+          </div>
+          <button type="button" class="section-nav-btn" id="techViewToggle">View all</button>
+        </div>
+
+        <div class="tech-stack-container" id="techStackContainer"></div>
+
+        <p class="tech-footer-note">NOTE: I am not an expert in all of these, but I am continuously learning and expanding my stack.</p>
+      </section>
+
+      <!-- 7. EVENTS -->
+      <section class="section" id="events">
+        <div class="section-head section-head-flex">
+          <div>
+            <h2 class="section-title">Events</h2>
+            <p class="section-intro">Hackathons, tech events, and community activities I've joined or helped organize.</p>
+          </div>
+          <a href="events.html" class="section-nav-btn">View all</a>
+        </div>
+
+        <div class="events-layout" id="eventsLayout">
+          <div class="timeline" id="eventPreview"></div>
+          <div class="event-wall" id="eventWall"></div>
+        </div>
+      </section>
+      
+      <!-- 8. CERTIFICATIONS -->
+      <section class="section" id="certifications">
+        <div class="section-head section-head-flex">
+          <div>
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-intro">Certificates and recognitions I've earned. Click one to preview.</p>
+          </div>
+          <a href="#/certifications" class="section-nav-btn">View all</a>
+        </div>
+        <div class="cert-grid" id="certShelf"></div>
+      </section>
+
+      <!-- 9. CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-head">
+          <h2 class="contact-hero-statement">Good things happen<br>when you say "Hey."</h2>
+          <p class="section-intro">Have an idea or opportunity? Reach out through any channel or send a message.</p>
+        </div>
+
+        <div class="contact-layout-grid">
+          <div class="contact-channels-stack">
+            <a href="mailto:gerardosison321@gmail.com" class="contact-channel-card">
+              <div class="channel-card-left">
+                <div class="channel-card-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                 </div>
-                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
-                <p class="timeline-desc">Spearheaded member engagement efforts during the organization's first-ever off-campus event, hosted at WhiteCloak Technologies, across CodeLab activities and a frontend development hackathon.</p>
-              </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-date font-mono">Nov 2025</div>
-              <div class="timeline-body">
-                <div class="timeline-title-row">
-                  <h4 class="timeline-title">Campus DEVCON Manila 2025: Haunted by Innovation</h4>
-                  <span class="badge">Finance Auditor</span>
+                <div class="channel-card-meta">
+                  <span class="channel-card-label">Email</span>
+                  <span class="channel-card-value">gerardosison321@gmail.com</span>
                 </div>
-                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
-                <p class="timeline-desc">Facilitated event operations for a multi-university tech conference featuring Hackathon and Game Jam finals, in partnership with Gen AI Philippines, CyberPH, and other tech organizations.</p>
               </div>
-            </div>
-
-            <div class="timeline-item">
-              <div class="timeline-date font-mono">Nov 2025</div>
-              <div class="timeline-body">
-                <div class="timeline-title-row">
-                  <h4 class="timeline-title">In4Session: Legacy Beyond Google Technologies</h4>
-                  <span class="badge">Finance Auditor</span>
-                </div>
-                <p class="timeline-company">Google Developer Groups on Campus &ndash; TUP Manila</p>
-                <p class="timeline-desc">Managed new member onboarding, overseeing distribution of membership kits including IDs and org merch to 200+ student "Googlers" as part of their induction into GDGoC's mission and technology roadmap.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <!-- =========================================================
-           ROUTE 4: CONTACT ME PAGE (/contact)
-           ========================================================= -->
-      <div id="view-contact" class="page-view">
-        <section class="section">
-          <div class="section-head section-head-flex">
-            <div>
-              <span class="section-tag font-mono">CONNECT</span>
-              <h1 class="section-title">Contact Me</h1>
-            </div>
-            <a href="/" data-link class="section-nav-link font-mono">&larr; BACK HOME</a>
-          </div>
-          <p class="section-intro text-muted">
-            Whether you have a question, project proposal, or want to connect, feel free to reach out directly.
-          </p>
-
-          <div class="contact-channels-grid mt-6">
-            <a href="mailto:gerardosison321@gmail.com" class="channel-card">
-              <div class="channel-info">
-                <span class="channel-type font-mono">DIRECT EMAIL</span>
-                <h3 class="channel-title">gerardosison321@gmail.com</h3>
-                <p class="channel-desc text-muted">Send an inquiry, project proposal, or say hello.</p>
-              </div>
-              <span class="channel-chevron font-mono">&rarr;</span>
+              <span class="channel-arrow" aria-hidden="true"></span>
             </a>
 
-            <a href="https://calendly.com" target="_blank" rel="noopener" class="channel-card">
-              <div class="channel-info">
-                <span class="channel-type font-mono">SCHEDULE MEETING</span>
-                <h3 class="channel-title">Schedule a 15-min Call</h3>
-                <p class="channel-desc text-muted">Pick a time that works best to discuss opportunities.</p>
+            <a href="https://github.com/gerardosison" target="_blank" rel="noopener" class="contact-channel-card">
+              <div class="channel-card-left">
+                <div class="channel-card-icon">
+                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+                </div>
+                <div class="channel-card-meta">
+                  <span class="channel-card-label">GitHub</span>
+                  <span class="channel-card-value">github.com/gerardosison</span>
+                </div>
               </div>
-              <span class="channel-chevron font-mono">&rarr;</span>
+              <span class="channel-arrow" aria-hidden="true"></span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/gerardo-sison-309959381" target="_blank" rel="noopener" class="contact-channel-card">
+              <div class="channel-card-left">
+                <div class="channel-card-icon">
+                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M0 1.15C0 .52.53 0 1.19 0h13.62C15.47 0 16 .52 16 1.15v13.7c0 .64-.53 1.15-1.19 1.15H1.19C.53 16 0 15.49 0 14.85V1.15ZM4.75 13.4V6.16H2.4v7.24h2.35Zm-1.17-8.22c.82 0 1.33-.54 1.33-1.22-.01-.7-.51-1.22-1.31-1.22-.8 0-1.33.53-1.33 1.22 0 .68.51 1.22 1.3 1.22h.01Zm4.53 8.22v-4.04c0-.22.02-.43.08-.59.18-.43.58-.88 1.26-.88.89 0 1.24.68 1.24 1.67v3.84h2.35V9.4c0-2.17-1.16-3.18-2.71-3.18-1.25 0-1.8.7-2.11 1.18h.02v-1H6.06c.03.66 0 7 0 7h2.05Z"/></svg>
+                </div>
+                <div class="channel-card-meta">
+                  <span class="channel-card-label">LinkedIn</span>
+                  <span class="channel-card-value">gerardo-sison</span>
+                </div>
+              </div>
+              <span class="channel-arrow" aria-hidden="true"></span>
+            </a>
+
+            <a href="https://web.facebook.com/gerardo.sison.1" target="_blank" rel="noopener" class="contact-channel-card">
+              <div class="channel-card-left">
+                <div class="channel-card-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.16 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.04 1.79-4.72 4.55-4.72 1.32 0 2.7.24 2.7.24v2.99h-1.52c-1.5 0-1.97.94-1.97 1.9v2.27h3.35l-.54 3.49h-2.81V24C19.61 23.16 24 18.1 24 12.07Z"/></svg>
+                </div>
+                <div class="channel-card-meta">
+                  <span class="channel-card-label">Facebook</span>
+                  <span class="channel-card-value">gerardo.sison.1</span>
+                </div>
+              </div>
+              <span class="channel-arrow" aria-hidden="true"></span>
+            </a>
+
+            <a href="https://www.instagram.com/gerardosison01/" target="_blank" rel="noopener" class="contact-channel-card">
+              <div class="channel-card-left">
+                <div class="channel-card-icon">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.22.41.52.19.96.45 1.39.88.43.43.69.87.88 1.39.16.42.36 1.05.41 2.22.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.22-.19.52-.45.96-.88 1.39-.43.43-.87.69-1.39.88-.42.16-1.05.36-2.22.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.22-.41a3.67 3.67 0 0 1-1.39-.88 3.67 3.67 0 0 1-.88-1.39c-.16-.42-.36-1.05-.41-2.22C2.01 15.58 2 15.2 2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.22.19-.52.45-.96.88-1.39.43-.43.87-.69 1.39-.88.42-.16 1.05-.36 2.22-.41C8.42 2.17 8.8 2.16 12 2.16Zm0 1.98c-3.15 0-3.5.01-4.74.07-1.14.05-1.76.24-2.17.4-.36.13-.62.29-.9.57-.28.28-.44.54-.57.9-.16.41-.35 1.03-.4 2.17-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.14.24 1.76.4 2.17.13.36.29.62.57.9.28.28.54.44.9.57.41.16 1.03.35 2.17.4 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.14-.05 1.76-.24 2.17-.4.36-.13.62-.29.9-.57.28-.28.44-.54.57-.9.16-.41.35-1.03.4-2.17.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.14-.24-1.76-.4-2.17-.13-.36-.29-.62-.57-.9-.28-.28-.54-.44-.9-.57-.41-.16-1.03-.35-2.17-.4-1.24-.06-1.59-.07-4.74-.07Zm0 3.38a4.48 4.48 0 1 1 0 8.96 4.48 4.48 0 0 1 0-8.96Zm0 7.4a2.92 2.92 0 1 0 0-5.84 2.92 2.92 0 0 0 0 5.84Zm5.7-7.58a1.05 1.05 0 1 1-2.1 0 1.05 1.05 0 0 1 2.1 0Z"/></svg>
+                </div>
+                <div class="channel-card-meta">
+                  <span class="channel-card-label">Instagram</span>
+                  <span class="channel-card-value">@gerardosison01</span>
+                </div>
+              </div>
+              <span class="channel-arrow" aria-hidden="true"></span>
             </a>
           </div>
 
-          <!-- Direct Message Form -->
-          <div class="mt-10">
-            <h3 class="subheading font-mono">Send a Direct Message</h3>
+          <div class="contact-form-wrap">
+            <h3 class="subheading">Send a Direct Message</h3>
             <form id="contactForm" class="contact-form">
-              <div class="form-row">
-                <div class="form-field">
-                  <label for="name" class="font-mono">Name</label>
-                  <input type="text" id="name" name="name" placeholder="Alex Morgan" required>
-                </div>
-                <div class="form-field">
-                  <label for="email" class="font-mono">Email</label>
-                  <input type="email" id="email" name="email" placeholder="alex@company.com" required>
-                </div>
+              <div class="form-field">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="name" required>
               </div>
               <div class="form-field">
-                <label for="message" class="font-mono">Message</label>
-                <textarea id="message" name="message" rows="4" placeholder="Tell me about your project or opportunity..." required></textarea>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+              </div>
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="3" placeholder="Tell me about your project, opportunity, or say hello..." required></textarea>
               </div>
               <div class="form-actions">
-                <button type="submit" class="btn btn-dark">
-                  Send Message <span class="arrow-icon">&rarr;</span>
-                </button>
-                <span class="form-status font-mono" id="formStatus"></span>
+                <button type="submit" class="btn btn-dark">Send Message</button>
+                <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
               </div>
             </form>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <!-- ===== FOOTER ===== -->
+      <!-- FOOTER -->
       <footer class="footer">
-        <div class="footer-inner-italic">
-          <p class="font-mono text-muted">Everything happens for a Reason.</p>
+        <div class="footer-inner">
+          <p class="footer-quote">&ldquo;Everything happens for a Reason.&rdquo;</p>
+          <div class="footer-meta">
+            <span>&copy; <span id="currentYear"></span> Gerardo Sison. All rights reserved.</span>
+            <button type="button" class="back-top-btn" id="backToTopBtn" aria-label="Back to top">TOP &uarr;</button>
+          </div>
         </div>
       </footer>
 
     </div>
   </main>
 
-  <!-- ===== SCREEN EXPAND MODAL ===== -->
-  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <!-- ===== EXPERIENCE DETAILS PAGE (route: #/experience) ===== -->
+  <div class="content all-projects" id="experienceView" hidden style="display:none">
+    <div class="content-inner">
+      <a href="#experience" class="back-link">Back to portfolio</a>
+      <div class="section-head">
+        <h1 class="section-title">Experience &amp; Leadership</h1>
+        <p class="section-intro">Roles, responsibilities, and what I did in each.</p>
+      </div>
+      <div class="exp-timeline" id="experienceDetails"></div>
+    </div>
+  </div>
+
+  <!-- ===== ALL PROJECTS PAGE (route: #/projects) ===== -->
+  <div class="content all-projects" id="allProjectsView" hidden>
+    <div class="content-inner">
+      <a href="#projects" class="back-link">Back to portfolio</a>
+      <div class="section-head">
+        <h1 class="section-title">All Projects</h1>
+        <p class="section-intro">Every system and digital project I've built. Click a card for details.</p>
+      </div>
+      <div class="project-grid" id="projectGrid"></div>
+    </div>
+  </div>
+
+  <!-- ===== EVENTS PAGE (route: #/events) ===== -->
+  <div class="content all-projects" id="eventsView" hidden>
+    <div class="content-inner">
+      <a href="#events" class="back-link">Back to portfolio</a>
+      <div class="section-head">
+        <h1 class="section-title">Events &amp; Hackathons</h1>
+        <p class="section-intro">Hackathons, ideathons, general assemblies, and tech community events, with photos.</p>
+      </div>
+      <div class="filter-bar" id="eventFilters"></div>
+      <div class="event-list" id="eventList"></div>
+    </div>
+  </div>
+
+  <!-- ===== CERTIFICATIONS PAGE (route: #/certifications) ===== -->
+  <div class="content all-projects" id="certificationsView" hidden>
+    <div class="content-inner">
+      <a href="#certifications" class="back-link">Back to portfolio</a>
+      <div class="section-head">
+        <h1 class="section-title">All Certifications</h1>
+        <p class="section-intro">Every certificate and recognition I've earned. Click one to preview.</p>
+      </div>
+      <div class="cert-grid" id="certGridAll"></div>
+    </div>
+  </div>
+
+  <!-- ===== PROJECT MODAL ===== -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-backdrop" id="modalBackdrop"></div>
     <div class="modal-card">
-      <button class="modal-close" id="modalClose" aria-label="Close modal">
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close modal">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
 
       <div class="modal-header">
-        <div class="modal-meta font-mono" id="modalMeta">Full-Stack Application &middot; 2025</div>
-        <h2 class="modal-title" id="modalTitle">Project Title</h2>
+        <div class="modal-meta" id="modalMeta"></div>
+        <h2 class="modal-title" id="modalTitle">Project</h2>
       </div>
 
-      <div class="modal-preview-box" id="modalPreviewBox">
-        <div class="preview-hero-mockup">
-          <div class="mockup-bar"><span></span><span></span><span></span></div>
-          <div class="mockup-screen" id="modalMockupContent"></div>
-        </div>
+      <div class="modal-preview-box">
+        <div class="window-bar"><span></span><span></span><span></span></div>
+        <div class="mockup-screen" id="modalMockupContent"></div>
       </div>
 
       <div class="modal-content-grid">
         <div class="modal-main-text">
-          <h3 class="modal-subhead font-mono">About the Project</h3>
-          <p id="modalDescription" class="modal-desc">Detailed walkthrough of the problem, solution, and architecture.</p>
+          <h3 class="modal-subhead">About the Project</h3>
+          <p id="modalDescription" class="modal-desc"></p>
 
-          <h3 class="modal-subhead font-mono mt-6">Key Contributions</h3>
+          <h3 class="modal-subhead mt-6">Key Contributions</h3>
           <ul class="modal-bullets" id="modalBullets"></ul>
         </div>
 
         <div class="modal-sidebar">
-          <div class="modal-meta-block">
-            <span class="modal-label font-mono">Technologies</span>
+          <div>
+            <span class="modal-label">Technologies</span>
             <div class="tag-list" id="modalTags"></div>
           </div>
-
-          <div class="modal-meta-block mt-4">
-            <span class="modal-label font-mono">Links</span>
-            <div class="modal-links" id="modalLinks"></div>
+          <div class="mt-4">
+            <span class="modal-label">Links</span>
+            <div id="modalLinks"></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ===== CERTIFICATE PREVIEW LIGHTBOX ===== -->
-  <div class="cert-lightbox" id="certLightbox">
-    <button class="cert-lightbox-close" aria-label="Close preview">&times;</button>
-    <img id="certLightboxImg" src="" alt="">
+  <!-- ===== CERTIFICATE LIGHTBOX ===== -->
+  <div class="cert-lightbox" id="certLightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button type="button" class="cert-lightbox-close" aria-label="Close preview">&times;</button>
+    <img id="certLightboxImg" src="" alt="Certificate preview">
   </div>
 
   <script src="js/data.js"></script>

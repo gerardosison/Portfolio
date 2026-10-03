@@ -13,6 +13,49 @@ function svgIcon(name, { width = 18, height = 18 } = {}) {
   return `<svg viewBox="0 0 24 24" width="${width}" height="${height}" fill="none" stroke="currentColor" stroke-width="1.8">${ICONS[name] || ''}</svg>`;
 }
 
+// ===== EXPERIENCE =====
+const EXPERIENCE = [
+  {
+    id: 'aws-sbg',
+    date: 'Sep 2026 — Present',
+    title: 'Software Engineering Associate',
+    org: 'AWS Student Builder Group · Technological University of the Philippines – Manila',
+    short: 'AWS',
+    logo: 'images/logo/aws.jpg',
+    bullets: []
+  },
+  {
+    id: 'gdgoc-cfo',
+    date: 'Aug 2026 — Present',
+    title: 'Chief Finance Officer',
+    org: 'Google Developer Groups on Campus · TUP Manila',
+    short: 'GDG',
+    logo: 'images/logo/gdg.jpg',
+    bullets: []
+  },
+  {
+    id: 'qa-oneplus',
+    date: "Mar 2026 — Aug '26",
+    title: 'Quality Assurance Analyst',
+    org: 'One Plus Solutions, Inc',
+    short: 'OPS',
+    logo: 'images/logo/oneplus.jpg',
+    bullets: [
+      'Executed detailed functional and regression testing across core software systems to identify, document, and isolate critical bugs.',
+      'Logged and tracked issues with reproducible steps in issue-tracking systems to streamline developer fixes and boost release stability.'
+    ]
+  },
+  {
+    id: 'gdgoc-auditor',
+    date: "Aug 2025 — Aug '26",
+    title: 'Finance Auditor',
+    org: 'Google Developer Groups on Campus · TUP Manila',
+    short: 'GDG',
+    logo: 'images/logo/gdg1.jpg',
+    bullets: []
+  }
+];
+
 // ===== PROJECTS =====
 const PROJECTS = [
   {
@@ -34,10 +77,67 @@ const PROJECTS = [
     ],
     githubUrl: 'https://github.com/gerardosison/DormEase'
   },
+  {
+    id: 'project-2',
+    image: 'images/projects/UlamBotohan.png',
+    title: 'UlamBotohan: Family Meal Voting App',
+    category: 'Academic Project',
+    year: '2026',
+    tags: ['Flutter', 'Node.js', 'Express.js', 'MySQL'],
+    summary: 'Mobile app that helps Filipino families fairly and confidentially choose an ulam using Borda Count ranked voting.',
+    description: 'UlamBotohan helps Filipino families reach a fair, confidential decision on what ulam to prepare or order. Each member privately ranks all candidates, and the backend scores them with the Borda Count method (top of n choices gets n − 1 points, down to 0). When the session closes, only the winning ulam and a ranking summary are revealed, never individual rankings. Built with Flutter, Node.js, and MySQL in a three-tier client-server architecture.',
+    bullets: [
+      'Private ranked voting with automatic Borda Count scoring and one vote per member.',
+      'Family groups via family code, with household roles and session timeouts.',
+      'Results page and anonymized voting history, backed by a 13-table MySQL database.',
+      'Developed with Aldred C. Mique, Jovielyn Eguillos, and Lianne Princess P. Lerios.'
+    ],
+    githubUrl: 'https://github.com/gerardosison/UlamBotohan'
+  },
+  {
+    id: 'project-3',
+    image: 'images/projects/HappyTravelApp.png',
+    title: 'Happy Travel (HAT) Airline Reservation System',
+    category: 'Academic Project',
+    year: '2026',
+    tags: ['Java', 'Swing', 'PostgreSQL', 'JDBC'],
+    summary: 'A Java Swing airline reservation and flight management system for passenger bookings, flight information, and airline operations.',
+    description: 'Happy Travel (HAT) is a desktop-based airline reservation system developed for Information Management. It supports passenger and staff access, flight searching, online and over-the-counter reservations, seat management, ticket generation, and transaction reporting.',
+    bullets: [
+      'Developed the Java Swing user interface and reservation workflow.',
+      'Integrated PostgreSQL using JDBC for flight, passenger, reservation, and transaction data.',
+      'Implemented flight management, seat availability, ticket generation, and reporting features.'
+    ],
+    githubUrl: 'https://github.com/gerardosison/Happy-Travel-HAT-Project'
+  }
 ];
 
 // ===== CERTIFICATIONS =====
 const CERTS = [
+  {
+    id: 'aws-sbg-appointment',
+    date: 'September 2026',
+    title: 'Certificate of Appointment: Software Engineering Associate',
+    issuer: 'AWS Student Builder Group · TUP Manila',
+    place: 'Technological University of the Philippines – Manila',
+    credentialId: null,
+    description: 'Officially appointed as Software Engineering Associate of the AWS Student Builder Group at the Technological University of the Philippines – Manila. Given on September 26, 2026.',
+    tags: ['AWS', 'Leadership', 'Software Engineering'],
+    img: 'images/certificates/aws.jpg',
+    pdf: 'images/certificates/Certificate_AWS.pdf'
+  },
+  {
+    id: 'ai-ideathon',
+    date: 'September 2026',
+    title: 'AI Ideathon: Combat Scams with AI',
+    issuer: 'COMPILE · iACADEMY Makati',
+    place: 'iACADEMY Auditorium, Makati City',
+    credentialId: null,
+    description: 'Certificate of participation, awarded for active participation, creativity, teamwork, and application of AI during Academics Week 2026: School of Computing Day.',
+    tags: ['AI', 'Prototyping', 'Pitching'],
+    img: 'images/certificates/iacademy.png',
+    pdf: 'images/certificates/Certificate_iAcademy.pdf'
+  },
   {
     id: 'acm',
     date: 'July 2026',
@@ -53,7 +153,7 @@ const CERTS = [
 const TECH_STACK = [
   {
     heading: 'Frontend & Backend Development',
-    speed: 32,
+    speed: 70,
     items: [
       { name: 'Java', icon: 'devicon-java-plain colored' },
       { name: 'C', icon: 'devicon-c-plain colored' },
@@ -72,7 +172,7 @@ const TECH_STACK = [
   },
   {
     heading: 'Cloud, BaaS, Database & CI/CD Management',
-    speed: 18,
+    speed: 55,
     items: [
       { name: 'Firebase', icon: 'devicon-firebase-plain colored' },
       { name: 'MySQL Workbench', icon: 'devicon-mysql-plain colored' },
@@ -85,7 +185,7 @@ const TECH_STACK = [
   },
   {
     heading: 'Code Editors & IDEs',
-    speed: 22,
+    speed: 60,
     items: [
       { name: 'Visual Studio Code', icon: 'devicon-vscode-plain colored' },
       { name: 'Android Studio', icon: 'devicon-androidstudio-plain colored' },
@@ -98,11 +198,98 @@ const TECH_STACK = [
   },
   {
     heading: 'Project Management & Designing',
-    speed: 12,
+    speed: 45,
     items: [
       { name: 'ClickUp', icon: null },
       { name: 'Microsoft 365', icon: null },
       { name: 'Figma', icon: 'devicon-figma-plain colored' }
     ]
   }
+];
+
+// ===== EVENTS =====
+const EVENT_LABELS = { hackathon: 'Hackathon', ideathon: 'Ideathon', community: 'Community' };
+
+const EVENTS = [
+  {
+    id: 'ai-ideathon-2026',
+    date: 'Sep 2026',
+    type: 'ideathon',
+    title: 'AI Ideathon: Combat Scams with AI',
+    role: 'Participant',
+    org: 'COMPILE · iACADEMY Makati',
+    place: 'iACADEMY Auditorium, Makati City',
+    description: 'Participated in an AI ideathon on combating scams with artificial intelligence, held during Academics Week 2026: School of Computing Day at the iACADEMY Auditorium, Makati City. Recognized for active participation, creativity, teamwork, and application of AI.',
+    highlights: [
+      'Created a prototype to combat scams and misinformation.',
+      'Pitched and presented our solution in front of the audience.'
+    ],
+    tags: ['AI', 'Prototyping', 'Pitching'],
+    photos: [] // e.g. ['images/events/ai-ideathon-2026/1.jpg', 'images/events/ai-ideathon-2026/2.jpg']
+  },
+  {
+    id: 'acm-techsprint-2026',
+    date: 'Jun 2026',
+    type: 'hackathon',
+    title: 'ACM TechSprint',
+    role: 'Participant',
+    org: 'FEU Institute of Technology',
+    place: 'FEU Institute of Technology',
+    description: 'Attended and actively participated in ACM TechSprint, where my team built a Flutter app to support student learning.',
+    highlights: [
+      'Built a Flutter app that helps improve student learning.',
+      'Addresses barriers Filipino students face in getting quality education support: limited access to tutors, connectivity constraints, and language differences.'
+    ],
+    tags: ['Flutter', 'Education', 'Mobile App'],
+    photos: []
+  },
+  {
+    id: 'study-jam-2026',
+    date: 'Mar 2026',
+    type: 'community',
+    title: 'Google Study Jam 2026: Dream, Design, Develop!',
+    role: 'Finance Auditor',
+    org: 'Google Developer Groups on Campus – TUP Manila',
+    place: 'WhiteCloak Technologies',
+    description: "Spearheaded member engagement during the organization's first-ever off-campus event, across CodeLab activities and a frontend development hackathon.",
+    photos: []
+  },
+  {
+    id: 'devcon-2025',
+    date: 'Nov 2025',
+    type: 'hackathon',
+    title: 'Campus DEVCON Manila 2025: Haunted by Innovation',
+    role: 'Finance Auditor',
+    org: 'Google Developer Groups on Campus – TUP Manila',
+    description: 'Facilitated operations for a multi-university tech conference featuring Hackathon and Game Jam finals, in partnership with Gen AI Philippines, CyberPH, and other tech organizations.',
+    photos: []
+  },
+  {
+    id: 'in4session-2025',
+    date: 'Nov 2025',
+    type: 'community',
+    title: 'In4Session: Legacy Beyond Google Technologies',
+    role: 'Finance Auditor',
+    org: 'Google Developer Groups on Campus – TUP Manila',
+    description: 'Managed new member onboarding and distributed membership kits (IDs and org merch) to 200+ student "Googlers" for their induction into the GDGoC mission and roadmap.',
+    photos: []
+  }
+];
+
+const EVENT_STACK = [
+  'images/events/img3.jpg',
+  'images/events/img1.jpg',
+  'images/events/img2.jpg',
+  'images/events/img4.jpg',
+  'images/events/img5.jpg',
+  'images/events/img6.jpg',
+  'images/events/img7.jpg',
+  'images/events/img9.jpg',
+  'images/events/img10.jpg',
+  'images/events/img11.jpg',
+  'images/events/img12.jpg',
+  'images/events/img13.jpg',
+  'images/events/img14.jpg',
+  'images/events/img15.jpg',
+  'images/events/img17.jpg',
 ];

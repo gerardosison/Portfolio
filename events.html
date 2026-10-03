@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Events &amp; Hackathons — Gerardo Sison</title>
+  <meta name="description" content="Hackathons, ideathons, and tech community events joined by Gerardo Sison.">
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" href="images/profile.png">
+  <link rel="apple-touch-icon" href="images/profile.png">
+</head>
+<body>
+
+  <header class="topbar is-scrolled" id="topbar">
+    <div class="topbar-inner">
+      <a href="index.html#hero" class="logo" aria-label="Back to home">gerardo</a>
+
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html#hero" class="nav-link">Home</a>
+        <a href="index.html#about" class="nav-link">About</a>
+        <a href="index.html#experience" class="nav-link">Experience</a>
+        <a href="index.html#projects" class="nav-link">Projects</a>
+        <a href="events.html" class="nav-link active">Events</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <button type="button" class="theme-toggle-btn" id="themeToggle" aria-label="Toggle color theme" title="Toggle theme">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+        <a href="index.html#contact" class="btn-nav-contact">Contact</a>
+        <button type="button" class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <nav class="mobile-nav" aria-label="Mobile">
+      <a href="index.html#hero" class="mobile-link">Home</a>
+      <a href="index.html#about" class="mobile-link">About Me</a>
+      <a href="index.html#experience" class="mobile-link">Experience</a>
+      <a href="index.html#projects" class="mobile-link">Projects</a>
+      <a href="events.html" class="mobile-link">Events</a>
+      <a href="index.html#contact" class="mobile-link">Contact</a>
+    </nav>
+  </div>
+
+  <main class="events-page">
+    <div class="events-inner">
+      <a href="index.html#events" class="back-link">Back to portfolio</a>
+
+      <div class="section-head">
+        <h1 class="section-title">Events &amp; Hackathons</h1>
+        <p class="section-intro">Hackathons, ideathons, and tech community events I've joined or helped organize.</p>
+      </div>
+
+      <div class="ev-wall" id="evWall" aria-label="Event photo gallery"></div>
+      
+      <div class="ev-toolbar">
+        <div class="filter-bar" id="eventFilters"></div>
+        <span class="section-hint" id="eventCount"></span>
+      </div>
+
+      <div class="timeline ev-rows" id="eventList"></div>
+
+      <footer class="footer">
+        <div class="footer-inner">
+          <p class="footer-quote">&ldquo;Everything happens for a Reason.&rdquo;</p>
+          <div class="footer-meta">
+            <span>&copy; <span id="currentYear"></span> Gerardo Sison. All rights reserved.</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <div class="cert-lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo preview">
+    <button type="button" class="cert-lightbox-close" id="lbClose" aria-label="Close preview">&times;</button>
+    <button type="button" class="lb-nav lb-prev" id="lbPrev" aria-label="Previous photo">&lsaquo;</button>
+    <img id="lbImg" src="" alt="">
+    <button type="button" class="lb-nav lb-next" id="lbNext" aria-label="Next photo">&rsaquo;</button>
+    <p class="lb-count" id="lbCount"></p>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/events.js"></script>
+</body>
+</html>
